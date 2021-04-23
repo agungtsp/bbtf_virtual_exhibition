@@ -1,0 +1,71 @@
+<h1 class="page-header">Beranda</h1>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="widget widget-stats bg-green">
+					<div class="stats-icon"><i class="fa fa-users"></i></div>
+					<div class="stats-info">
+						<h4>Total Member (Semua)</h4>
+						<p>{total_member}</p>	
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="widget widget-stats bg-blue">
+					<div class="stats-icon"><i class="fa fa-users"></i></div>
+					<div class="stats-info">
+						<h4>Total Member (Belum Terkonfirmasi)</h4>
+						<p>{total_member_not_verified}</p>	
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="widget widget-stats bg-purple">
+					<div class="stats-icon"><i class="fa fa-users"></i></div>
+					<div class="stats-info">
+						<h4>Total Member (Sudah Terkonfirmasi)</h4>
+						<p>{total_member_verified}</p>	
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+<style>
+.box{min-height:413px;border: 1px solid #BFBFBF}
+/*#calendar2{height: 100%px;}*/
+#popupCalendar{overflow-y: auto;width:96% !important;left: 0;height: 96%;left: 2% !important;}
+#popupCalendar.modal{margin-left: 0 !important;}
+</style>
+<script src='{url_static_content}template/assets/plugins/core/locales/id.js'></script>
+<script src='{url_static_content}template/assets/plugins/core/main.min.js'></script>
+
+<script src='{url_static_content}template/assets/plugins/list/main.min.js'></script>
+<script src='{url_static_content}template/assets/plugins/daygrid/main.min.js'></script>
+
+<link href='{url_static_content}template/assets/plugins/core/main.min.css' rel='stylesheet' />
+<link href='{url_static_content}template/assets/plugins/daygrid/main.min.css' rel='stylesheet' />
+<link href='{url_static_content}template/assets/plugins/list/main.min.css' rel='stylesheet' />
+
+<script>
+    handleDashboardGritterNotification();
+	$(document).ready(function() {
+		var calendarEl = document.getElementById('calendar');
+
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			plugins: [ 'dayGrid', 'list' ],
+			defaultView: 'dayGridMonth',
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'dayGridMonth,listMonth'
+			},
+			editable: false,
+			events: '{this_controller}training_schedule'
+		});
+
+		calendar.render();
+	});
+
+</script>

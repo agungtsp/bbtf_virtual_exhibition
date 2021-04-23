@@ -1,0 +1,32 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td class="center">{name}</td>
+		<td class="center">{opt}</td>
+		<td class="center">{comment}</td>
+		<!-- <td class="center">
+			<a href="{this_controller}view/{id}" title="View Detail" class="fa fa-search action-form-icon"></a>
+		</td> -->
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>
+
+<!--<script type="text/javascript">
+	$(document).ready(function(){
+		$(".chg_stat").click(function(){
+			var id_lang 	= $(this).attr('data-lang');
+			var url 		= "{this_controller}change_stat";
+			
+			$.post(
+				url,
+				{data: id_lang},
+				function(){
+					location.reload();
+				}
+			);
+		});
+	});
+</script>-->

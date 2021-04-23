@@ -1,0 +1,24 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td class="center">
+			{full_name}<br>
+			<i class="fa fa-user">&nbsp;</i> {user_group}<br>
+			<i class="fa fa-phone">&nbsp;</i> {phone}<br>
+			<i class="fa fa-envelope-o">&nbsp;</i> {email}
+		</td>
+		<td>{title}</td>
+		<td>{forum_category}</td>
+		<td>{create_date}</td>
+		<td>{status_publish}</td>
+		<!-- <td>{is_read_admin}</td> -->
+		<td class="center">
+			<a href="{this_controller}view/{id}" title="View Data" class="fa fa-search tangan action-form-icon"></a>
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

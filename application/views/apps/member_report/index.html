@@ -1,0 +1,137 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="clearfix">&nbsp;</div>
+					<form action='{this_controller}report' class="form-horizontal" method='post' id='form1' autocomplete="off"  enctype="multipart/form-data">
+						<div class="form-horizontal">
+							<div class="col-md-6">
+								<div class="form-group  no-margin">
+									<label class="col-md-4 control-label">Tanggal Awal</label>
+									<div class="col-md-8">
+										<input type="text" value="{start_date}" id="start_date" class='form-control datepicker_range_start' name="start_date" >
+									</div>
+								</div>
+                            </div>
+
+							<div class="col-md-6">
+								<div class="form-group  no-margin">
+									<label class="col-md-4 control-label">Tanggal Akhir</label>
+									<div class="col-md-8">
+										<input type="text" value="{end_date}" id="end_date" class='form-control datepicker_range_end' name="end_date" >
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group  no-margin">
+									<a class="btn btn-primary tangan pull-right" href='#' id="generate_report_customer" style="margin-right: 15px;margin-left: 15px;"><i class="fa fa-search">&nbsp;</i> Cari</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="container-pie" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div class="clearfix">&nbsp;</div>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script src="{base_url}template/assets/plugins/highcharts/highcharts.js"></script>
+<script src="{base_url}template/assets/plugins/highcharts/modules/series-label.js"></script>
+<script src="{base_url}template/assets/plugins/highcharts/modules/exporting.js"></script>
+<script type="text/javascript">
+$(document).on('click','#generate_report_customer',function(){
+	loading();
+	$.ajax({
+		url         : $('#form1').attr('action'),
+		type        : "POST",
+		dataType	: 'json',
+		data        : $('#form1').serialize(),
+		error		: function () {
+			loadingcomplete();
+		},
+		success     : function(ret){
+			Highcharts.chart('container', {
+			    title: {
+			        text: 'Laporan Member - Bar'
+			    },
+			    xAxis: {
+			        categories: ret.date
+			    },
+			    yAxis: [{
+		            tickInterval: 1,
+		            minRange: 1,
+		            allowDecimals: false,
+		            startOnTick: true,
+		            endOnTick: true
+		        }, {
+		            opposite: true
+		        }],
+			    series: [{
+			        type: 'column',
+			        name: 'Member Belum Terkonfirmasi',
+			        data: ret.data_user_unverified
+			    }, {
+			        type: 'column',
+			        name: 'Member Terkonfirmasi',
+			        data: ret.data_user_verified,
+			    }]
+			});
+
+			Highcharts.chart('container-pie', {
+				chart: {
+					plotBackgroundColor: null,
+					plotBorderWidth: null,
+					plotShadow: false,
+					type: 'pie'
+				},
+				title: {
+					text: 'Laporan Member - Pie'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.y}</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.y}'
+						}
+					}
+				},
+				series: [{
+					name: 'Brands',
+					colorByPoint: true,
+					data: [{
+						name: 'Member Belum Terkonfirmasi',
+						y: ret.all_user_unverified,
+						sliced: true,
+						selected: true
+					}, {
+						name: 'Member Terkonfirmasi',
+						y: ret.all_user_verified
+					}]
+				}]
+			});
+			loadingcomplete();
+		}
+	})
+	
+});
+
+</script>

@@ -1,0 +1,110 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+				<div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				</div>
+				<h4 class="panel-title">Detil - {full_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary" href='{this_controller}add/{id_auth_user}'><i class="fa fa-pencil-square-o"></i> Edit</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form  class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Nama Lengkap</label>
+								<div class="col-md-9">: {full_name}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Tanggal Daftar</label>
+								<div class="col-md-9">: {create_date}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Jatuh Tempo</label>
+								<div class="col-md-9">: {expired_date}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Username</label>
+								<div class="col-md-9">: {userid}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Jenis Kelamin </label>
+								<div class="col-md-9">: 
+									{gender}
+								</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Tanggal Lahir </label>
+								<div class="col-md-9">: {birthdate}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Email</label>
+								<div class="col-md-9">: {email}</div>
+							</div><div class="form-group  no-margin">
+								<label class="col-md-3">No. Telepon</label>
+								<div class="col-md-9">: {phone}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Kode Pos</label>
+								<div class="col-md-9">: {postal_code}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3">Alamat</label>
+								<div class="col-md-9">: {address}</div>
+							</div>
+						</form>
+					</div>
+					<div class="clearfix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-12 col-md-12">
+						<h2>Toko</h2>
+						<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records_store">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center" width="20">No</th>
+											<th class="center" title='Sort' id='a-store_name'>Nama Toko <span></span></th>
+											<th class="center" title='Sort' id='a-full_name'>Kontak <span></span></th>
+											<th class="center" title='Sort' id='a-email'>Email <span></span></th>
+											<th class="center" title='Sort' id='a-phone'>Telpon <span></span></th>
+											<th class="center" title='Sort' id='a-phone'>Alamat <span></span></th>
+											<th class="center" width="80">Action</th>
+										</tr>
+										<tr class='filter'>
+											<td></td>
+											<td><input type='text' class='cari form-control' id='search_store_name' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_full_name' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_email' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_phone' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_address' placeholder='Search...'></td>
+											<td></td>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-12 col-md-12">
+						<h2>Surat Kontrak</h2>
+						<div class="well text-dark" style="max-height: 450px;overflow-x: scroll;">
+							{srs_content}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

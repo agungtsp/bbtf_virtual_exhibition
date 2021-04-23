@@ -1,0 +1,90 @@
+<h1 class="page-header">{page_title}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Name<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" name="name" value="{name}" id="title" class='form-control' data-parsley-required="true"  title="name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Url<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" name="uri_path" value="{uri_path}" id="uri_path" class='form-control' title="uri_path"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+								<div class="col-md-9"><select name="id_help_category" id="id_help_category" class='form-control' data-parsley-required="true" title="id_help_category">{list_category}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Page Content</label>
+								<div class="col-md-9"><textarea  name="description" rows="4" data-parsley-required="true" id="description" class="form-control ckeditor">{description}</textarea></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Tags<i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="ref_id_tags" multiple class='form-control' name="ref_id_tags[]">{list_tags}</select>
+								</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Seo Title</label>
+								<div class="col-md-9"><input type="text" value="{seo_title}" data-parsley-maxlength="200" id="seo_title" class='form-control' name="seo_title"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Description</label>
+								<div class="col-md-9"><textarea  name="meta_description" rows="4" data-parsley-maxlength="250" id="meta_description" class="form-control">{meta_description}</textarea></div>
+							</div>
+						    
+						    <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Keywords</label>
+								<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords" class='form-control' name="meta_keywords" data-parsley-maxlength="250"></div>
+							</div>
+							<div class='form-group no-margin'>
+								<label class="col-md-3 control-label">Publish Date <i class='req'>*</i></label>
+								<div class="col-md-9">
+									<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+										<input type="text" value="{publish_date}" id="publish_date" class='form-control' name="publish_date" readonly="readonly" data-parsley-required="true" >
+										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9"><select name="id_status_publish" id="id_status_publish" class='form-control' data-parsley-required="true" title="status_publish">{list_status_publish}</select></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display:none;">{image}</div>
+{imagemanager_config}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#ref_id_tags").select2({
+		  tags: true,
+		  tokenSeparators: [","]
+		})
+	});
+</script>

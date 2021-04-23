@@ -1,0 +1,23 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{full_name}</td>
+		<td>{store_name}<br><i class="fa fa-clock-o">&nbsp;</i> {expired_date}</td>
+		<td><a href="{link_store_address}" target="_BLANK">{store_address} <i class="fa fa-external-link">&nbsp;</i></a></td>
+		<td>{email}</td>
+		<td>{phone}</td>
+		<td class="center">
+			<a href="{this_controller}view/{id}" title="Store Data" class="fa fa-search tangan action-form-icon"></a>
+			<a href="{this_controller}store/{id}" title="Store Data" class="fa fa-home tangan action-form-icon"></a>
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a href="{base_url}apps/report_issues/add/?id_user={id}" title="Tambah Keluhan" class="fa fa-comments tangan action-form-icon"></a>
+			<a href="{base_url}apps/forum/add?id_user={id}" title="Tambah Permohonan Fitur" class="fa fa-cubes tangan action-form-icon"></a>
+			<a href="{link_whatsapp}" title="Follow Up" class="fa fa-whatsapp tangan action-form-icon" style="color: green;" target="_BLANK"></a>
+			<!-- <a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a> -->
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

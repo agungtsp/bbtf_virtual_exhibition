@@ -1,0 +1,156 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="span12 text-right">
+							<a class="btn btn-primary insert_data {disable_edit} tangan" id='save_with_file'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off"  enctype="multipart/form-data">
+							<div class="form-group  no-margin hidden">
+                                <label class="col-md-3 control-label">Nama Member <i class="req">*</i></label>
+                                <div class="col-md-9">
+                                    <!-- <select class="form-control" data-parsley-required="true" id="id_auth_user" name="id_auth_user" required="true" {is_disabled}>{list_auth_user}</select> -->
+                                    <input type="hidden" class="form-control" data-parsley-required="true" id="id_auth_user" name="id_auth_user" required="true" value="{session_id_user}"></select>
+                                </div>
+                            </div>
+							
+							<div class="form-group  no-margin">
+                                <label class="col-md-3 control-label">Kategori <i class='req'>*</i></label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="id_forum_category" name="id_forum_category" required="true">{list_forum_category}</select>
+                                </div>
+                            </div>
+
+							<!-- Penambahan uRL -->
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Judul <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{title}" id="title" class='form-control' name="title" >
+							</div>
+							</div>
+							
+							<!-- Penambahan description -->
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Deskripsi <i class='req'>*</i></label>
+								<div class="col-md-9"><textarea name="description" rows="4" id="description" class="form-control ckeditor">{description}</textarea></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9"><select name="id_status_publish" id="id_status_publish" class='form-control' data-parsley-required="true" title="status_publish">{list_status_publish}</select></div>
+							</div>
+							<div class="form-group no-margin">
+								<label class="col-md-3 control-label">File Pendukung</label>
+								<div class="col-md-9">
+									<div class="owl-carousel owl-theme" id="list_files">
+										{list_files}
+										<div class="owl-item">
+											<div><span class='label label-default	'><a href="{files_link}" target="_BLANK">{files_name}</a></span></div>
+			                				<button class='btn owl-del' data_is_saved="1" data-file='files_multi{files_num}' type='button'>&times; Hapus</button>
+											<input type="hidden" name="file_saved[]" value="{files_name}">
+										</div>
+										{/list_files}
+									</div>
+									<br>
+									<div id="box_add_btn_file">
+										<label class="btn btn-primary">
+											<input type="file" class="hidden" name="file_multi[]" multiple id="files_multi">
+											<i class="fa fa-plus"></i> Tambah File
+										</label>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	.cke_button__imagemanager{
+		display: none !important;
+	}
+	.label-default	{
+		font-size: 14px;
+	    display: -webkit-inline-box;
+	    margin-bottom: 5px;
+	    margin-top: 5px;
+		color: #000 !important;
+	}
+	.label a{
+		color: #000 !important;
+	}
+</style>
+<script type="text/javascript">
+	var id_user = "<?php echo $_GET[id_user]; ?>";
+	if(id_user){
+		$('#id_auth_user').val(id_user).change();
+	}
+
+	
+	var xi = $('#list_files .item').length;
+	$(document).on("change", '[id^="files_multi"]', function(event){
+	    //Check File API support
+	    if(window.File && window.FileList && window.FileReader)
+	    {
+	    	// if ($('.owl-item').length > 10) {alert('Max files upload is 10 pictures!');return false;}
+	        var files = event.target.files; //FileList object
+	        var output = document.getElementById("list_files");
+	        for(var i = 0; i< files.length; i++)
+	        {
+	            var file = files[i];
+	            var tmppath = URL.createObjectURL(file);
+	    		filePath = tmppath;
+
+	            var picReader = new FileReader();
+	            picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+	                var div = document.createElement("div");
+	                div.className = 'item';
+	                numx = ($('[data_is_saved=1]').length > 0) ? xi : xi-1;
+	                div.innerHTML = "<div class='owl-item'><span class='label label-default	'>" + file.name + "</span><br><button class='btn owl-del' data_is_saved='0' data-file='files_multi"+numx+"' type='button'>&times; Hapus</button></div>";
+	                
+	                output.insertBefore(div,null);            
+
+		            var input_file = "<label class='btn btn-primary'>\
+										<input type='file' class='hidden' name='file_multi[]' multiple id='files_multi"+xi+"'>\
+										<i class='fa fa-plus'></i> Tambah File\
+									</label>";
+	            	$('#box_add_btn_file .btn-primary').addClass('hidden');
+	            	$('#box_add_btn_file').append(input_file);
+					xi++;
+	            });
+	            
+	             //Read the image
+	            picReader.readAsDataURL(file);
+	    	}
+		}
+	    else
+	    {
+	        console.log("Your browser does not support File API");
+	    }
+	});
+	$(document).on('click','.owl-del',function(){
+		$(this).parent().remove();
+		if ($(this).attr('data_is_saved') == 0) {
+			var id_file = $(this).attr('data-file');
+			var id_del_file = ($('#'+id_file).length) ? '#'+id_file : '#files_multi';
+			$(id_del_file).closest('label').remove();
+		}
+	});
+</script>
