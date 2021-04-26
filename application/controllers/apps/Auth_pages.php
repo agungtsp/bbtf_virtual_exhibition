@@ -70,7 +70,7 @@ class Auth_pages extends CI_Controller {
 			}
 			else{
 				$this->db->delete('ref_company',"id_ref_company = '$id'");
-				$msg .= "Company $company Berhasil dihapus \n";
+				$msg .= "Company $company deleted successfully \n";
 			}
 		}
 			echo $msg;

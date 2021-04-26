@@ -40,7 +40,7 @@ class Tutorial extends REST_Controller {
         {
             $this->set_response([
                 'status' => FALSE,
-                'message' => 'Data tidak ditemukan'
+                'message' => 'Data not found'
             ], REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
         }
     }

@@ -53,7 +53,7 @@ class Service extends REST_Controller {
                     $idedit = db_get_one($this->model->table, "id", md5field("id")."='".$post['id']."' AND is_delete = 0 AND id_auth_user = ".$decoded_array['admin_id_auth_user']);
                     if (!$idedit)
                     {
-                        $ret['msg'] = 'Data tidak ditemukan';
+                        $ret['msg'] = 'Data not found';
                         return $this->set_response($ret, REST_Controller::HTTP_NOT_FOUND);
                     }
                     unset($post['id']);
@@ -62,12 +62,12 @@ class Service extends REST_Controller {
                 $post['service_date'] = iso_date_custom_format($post['service_date'],'Y-m-d');
                 
                 if($idedit){
-                    $ret['msg'] = 'Data berhasil diperbaharui';
+                    $ret['msg'] = 'Data updated successfully';
                     $this->model->update($post,$idedit);
                 }
                 else{
                     $post['id_auth_user'] = $decoded_array['admin_id_auth_user'];
-                    $ret['msg'] = 'Data berhasil ditambahkan.';
+                    $ret['msg'] = 'Data added successfully.';
                     $this->model->insert($post);
                 }
                 $this->db->trans_complete();
@@ -101,7 +101,7 @@ class Service extends REST_Controller {
                 if (!$data)
                 {
                     $ret['error'] = 1;
-                    $ret['msg'] = 'Data tidak ditemukan';
+                    $ret['msg'] = 'Data not found';
                     return $this->set_response($ret, REST_Controller::HTTP_NOT_FOUND);
                 }
             } else {
@@ -177,11 +177,11 @@ class Service extends REST_Controller {
 
                 if (!$id)
                 {
-                    $ret['msg'] = 'Data tidak ditemukan';
+                    $ret['msg'] = 'Data not found';
                     return $this->set_response($ret, REST_Controller::HTTP_NOT_FOUND);
                 }
                 $this->model->delete($id);
-                $ret['msg'] = "Data berhasil dihapus.";
+                $ret['msg'] = "Data deleted successfully.";
             }
         } catch (Exception $e) {
             $ret['msg'] = $e->getMessage(); //Respon if credential invalid

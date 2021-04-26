@@ -7,6 +7,7 @@ class Member extends CI_Controller {
 	}
 	function index(){
 		$data['list_user_group'] 		= selectlist2(array('table'=>'auth_user_grup','id'=>'id_auth_user_grup','name'=>'grup','title'=>'All User Group', 'where' => 'id_auth_user_grup in (3, 4)'));
+		$data['list_ref_user_category'] 		= selectlist2(array('table'=>'ref_user_category','title'=>'All User Group','selected'=>$data['id_ref_user_category'], 'where' => array("is_delete" => 0)));
 		render('apps/member/index',$data,'apps');
 	}
 	public function add($id=''){
@@ -20,7 +21,6 @@ class Member extends CI_Controller {
 			$data                 = quote_form($data);
 			$data['is_edit']      = '';
 			$data['is_show_pass'] = 'hidden';
-			$data['birthdate']    = iso_date_custom_format($data['birthdate'],'d-m-Y');
 		}
 		else{
 			$data['judul']              = 'Add';
@@ -33,28 +33,19 @@ class Member extends CI_Controller {
 			$data['is_edit']            = 'hidden';
 			$data['is_show_pass']       = '';
 			$data['id_auth_user']       = '';
-			$data['gender']             = '';
-			$data['postal_code']        = '';
-			$data['address']            = '';
-			$data['birthdate']          = '';
-			$data['kode_ref_provinsi'] = '';
-			$data['kode_ref_kabupaten'] = '';
-			$data['kode_ref_kecamatan'] = '';
-			$data['kode_ref_kelurahan'] = '';
+			$data['title']        = '';
+			$data['city']         = '';
+			$data['company']      = '';
+			$data['job_title']    = '';
 		}
 
-		$data['checked_male']      = $data['gender'] == 'M' ? 'checked' : '';
-		$data['checked_female']    = $data['gender'] == 'F' ? 'checked' : '';
+		$data['checked_mr']  = $data['title'] == 'mr' ? 'checked' : '';
+		$data['checked_mrs'] = $data['title'] == 'mrs' ? 'checked' : '';
+		$data['checked_ms']  = $data['title'] == 'ms' ? 'checked' : '';
 
-		$data['list_user_group'] 		= selectlist2(array('table'=>'auth_user_grup','id'=>'id_auth_user_grup','name'=>'grup','title'=>'All User Group','selected'=>$data['id_auth_user_grup'], 'where' => 'id_auth_user_grup in (3, 4)'));
-		$data['list_provinsi'] = selectlist2(array('table'=>'ref_provinsi',
-			'title'=>'Pilih Provinsi',
-			'id'=>'kode_provinsi',
-			'name'=>'provinsi',
-			'order'=>'id_provinsi',
-			'selected'=>$data['kode_ref_provinsi'],
-			'is_delete'=>0)
-		);
+		$data['list_user_group'] 		= selectlist2(array('table'=>'auth_user_grup','id'=>'id_auth_user_grup','name'=>'grup','selected'=>$data['id_auth_user_grup'],'title'=>'All User Group', 'where' => "id_auth_user_grup in (3, 4)"));
+		$data['list_ref_country'] 		= selectlist2(array('table'=>'ref_country','title'=>'All Country','selected'=>$data['id_ref_country'], 'where' => array("is_delete" => 0)));
+		$data['list_ref_user_category'] 		= selectlist2(array('table'=>'ref_user_category','title'=>'All User Group','selected'=>$data['id_ref_user_category'], 'where' => array("is_delete" => 0)));
 		load_js('user.js','assets/js/modules/user');
 
 		render('apps/member/add',$data,'apps');
@@ -96,13 +87,16 @@ class Member extends CI_Controller {
 			$post['userpass'] = md5($post['userpass']);
 		}
 		
-		$this->form_validation->set_rules('userid', '"User ID"', 'required'); 
-		$this->form_validation->set_rules('full_name', '"User Name"', 'required'); 
+		$this->form_validation->set_rules('id_auth_user_grup', '"User"', 'required'); 
+		$this->form_validation->set_rules('title', '"Title"', 'required'); 
+		$this->form_validation->set_rules('full_name', '"Fullname"', 'required'); 
 		$this->form_validation->set_rules('email', '"Email"', 'required'); 
 		$this->form_validation->set_rules('phone', '"Phone"', 'required'); 
-		$this->form_validation->set_rules('id_auth_user_grup', '"User Group"', 'required'); 
-		$this->form_validation->set_rules('gender', '"Jenis Kelamin"', 'trim|required');
-		$this->form_validation->set_rules('birthdate', '"Tanggal Lahir"', 'trim|required');
+		$this->form_validation->set_rules('city', '"City"', 'required'); 
+		$this->form_validation->set_rules('id_ref_country', '"Country"', 'required'); 
+		$this->form_validation->set_rules('company', '"Company"', 'required'); 
+		$this->form_validation->set_rules('job_title', '"Job"', 'required'); 
+		$this->form_validation->set_rules('id_ref_user_category', '"Category"', 'required'); 
 
 		if ($this->form_validation->run() == FALSE){
 			$ret['message']  = validation_errors(' ',' ');
@@ -115,25 +109,25 @@ class Member extends CI_Controller {
 				$ret['error'] = 1;
 				$ret['message'] =  " Account Name $post[userid] already exsist";
 			} else {
-				$post['birthdate'] = iso_date_custom_format($post['birthdate'],'Y-m-d');
 				
 				if($idedit){
 					$current_group = db_get_one('auth_user',"id_auth_user_grup",["id_auth_user" => $idedit]);
 					auth_update();
+					$post['userid'] = $post['email'];
 					$ret['message'] = 'Update Success';
 					$act			= "Update User Management";
 					$this->Member_model->update($post,$idedit);
 
 					// send notification
-					if ($current_group != $post['id_auth_user_grup'])
-					{
-						if ($post['id_auth_user_grup'] == 4)
-						{
-							$notif['title'] = 'Akun terverifikasi';
-							$notif['content'] = 'Selamat! Akun Anda telah diverifikasi';
-							send_notification($idedit, $notif, id_user());
-						}
-					}
+					// if ($current_group != $post['id_auth_user_grup'])
+					// {
+					// 	if ($post['id_auth_user_grup'] == 4)
+					// 	{
+					// 		$notif['title'] = 'Akun terverifikasi';
+					// 		$notif['content'] = 'Selamat! Akun Anda telah diverifikasi';
+					// 		send_notification($idedit, $notif, id_user());
+					// 	}
+					// }
 				}
 				else{
 					auth_insert();
@@ -157,55 +151,6 @@ class Member extends CI_Controller {
 		$this->Member_model->delete($id);
 		detail_log();
 		insert_log("Delete User Management");
-	}
-
-	function get_kabupaten(){
-		$post 	= $this->input->get();
-		$kd_provinsi_wilayah = $post['code'];
-		$data['list_data'] = selectlist2(array(
-			'table'=>'ref_kabupaten',
-			'title'=>'Pilih Kabupaten/Kota',
-			'id'=>'kode_kabupaten',
-			'name'=>'kabupatenkota',
-			'selected'=>$post['selected'],
-			'where'=>array(
-				'kode_provinsi'=>$kd_provinsi_wilayah),
-			'is_delete'=>0
-			)
-		);
-		echo json_encode($data);
-	}
-
-	function get_kecamatan(){
-		$post 	= $this->input->get();
-		$kd_kabupaten_wilayah = $post['code'];
-		$data['list_data'] = selectlist2(array(
-			'table'=>'ref_kecamatan',
-			'title'=>'Pilih Kecamatan',
-			'id'=>'kode_kecamatan',
-			'name'=>'kecamatan',
-			'selected'=>$post['selected'],
-			'where'=>array(
-				'kode_kabupaten'=>$kd_kabupaten_wilayah)
-			)
-		);
-		echo json_encode($data);
-	}
-
-	function get_kelurahan(){
-		$post 	= $this->input->get();
-		$kd_kelurahan = $post['code'];
-		$data['list_data'] = selectlist2(array(
-			'table'=>'ref_kelurahan',
-			'title'=>'Pilih Kelurahan',
-			'id'=>'kode_kelurahan',
-			'name'=>'kelurahan',
-			'selected'=>$post['selected'],
-			'where'=>array(
-				'kode_kecamatan'=>$kd_kelurahan)
-			)
-		);
-		echo json_encode($data);
 	}
 }
 

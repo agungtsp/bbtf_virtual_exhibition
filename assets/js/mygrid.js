@@ -248,7 +248,7 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 							var link = $(this).attr('data-url-rm');
 							var base_link = $(this).attr('data-base-url');
 							var text = ($(this).attr('data-text')) ? $(this).attr('data-text') : "Hapus Data ?";
-							var text_msg = ($(this).attr('data-msg')) ? $(this).attr('data-msg') : "Data berhasil dihapus";
+							var text_msg = ($(this).attr('data-msg')) ? $(this).attr('data-msg') : "Data deleted successfully";
 							if(base_link) {
 								this_controller = base_url+'apps/news/';
 							}
@@ -261,7 +261,7 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 									type 		: 'POST',
 									success		: function(msg){
 									    my_grid(order_id);
-									    //alert('Data berhasil dihapus');
+									    //alert('Data deleted successfully');
 									    if(text_msg=="return"){
 									    	msg = jQuery.parseJSON(msg);
 									    	text_msg = msg.message;

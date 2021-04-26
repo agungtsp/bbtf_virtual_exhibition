@@ -264,7 +264,7 @@ class Account extends REST_Controller {
                 $ret['error'] = 0;
                 $ret['msg']   = "Password baru telah dikirim ke alamat email Anda.";
             }else{
-                $ret['msg']   = "Email tidak ditemukan.";
+                $ret['msg']   = "Email not found.";
                 $data['activity'] = "change password not found email : $email";
                 $data['log_date'] =  date('Y-m-d H:i:s');
                 $this->db->insert('access_log',$data);

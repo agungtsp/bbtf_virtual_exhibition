@@ -47,7 +47,7 @@ $lang['users input username_email']           = "Username atau Email";
 $lang['users help passwords']                 = "Masukkan password hanya jika anda ingin merubahnya.";
 
 // Messages
-$lang['users msg add_user_success']           = "%s berhasil ditambahkan!";
+$lang['users msg add_user_success']           = "%s added successfully!";
 $lang['users msg delete_confirm']             = "Apakah anda yakin ingin menghapus <strong>%s</strong>? Ini tidak bisa dibatalkan.";
 $lang['users msg delete_user']                = "Anda telah berhasil menghapus <strong>%s</strong>!";
 $lang['users msg edit_profile_success']       = "Profil anda berhasil diperbarui!";
