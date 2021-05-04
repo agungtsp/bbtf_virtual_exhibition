@@ -53,22 +53,10 @@ $route['translate_uri_dashes'] 	= FALSE;
 $route['default_controller'] 	= "home";
 $route['404_override'] 			= 'notfound';
 
-// start backend
-$route['apps/event/(:any)/participant/records/(:num)'] = 'apps/event/participant_records/$1/$2';
-$route['apps/event/(:any)/participant/records']        = 'apps/event/participant_records/$1';
-$route['apps/event/(:any)/participant/add/(:any)']     = 'apps/event/participant_add/$1/$2';
-$route['apps/event/(:any)/participant/add']            = 'apps/event/participant_add/$1';
-$route['apps/event/(:any)/participant/(:any)/payment'] = 'apps/event/payment/$1/$2';
-$route['apps/event/(:any)/participant']                = 'apps/event/participant/$1';
-// end backend
-
 // start frontend
-$route['hubungi-kami']                      = 'contact_us';
-$route['tentang-kami']                      = 'about_us';
-$route['event/detil/(:any)']                = 'event_detail/index/$1';
-$route['event/page']                        = 'event/index';
-$route['event/page/(:any)']                 = 'event/index/$1';
-$route['event/kategori/(:any)']             = 'event/index/1/$1';
-$route['event/kategori/(:any)/page']        = 'event/index/1/$1';
-$route['event/kategori/(:any)/page/(:any)'] = 'event/index/$2/$1';
+$route['exhibition/(:any)']        = 'exhibition/index/$1';
+$route['exhibitor/(:any)/(:any)'] = 'exhibitor/detail/$1/$2';
+$route['exhibitor']           = 'exhibitor';
+$route['meeting-schedule']         = 'meeting_schedule/index';
+$route['meeting-schedule/list']    = 'meeting_schedule/list';
 // end frontend

@@ -4,30 +4,23 @@
 
   <!-- SITE TITTLE -->
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{page_name} - {app_name}</title>
   
-  <!-- PLUGINS CSS STYLE -->
-  <!-- <link href="{base_url}asset/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
-  <!-- Bootstrap -->
-  <link href="{base_url}asset/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="{base_url}asset/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Owl Carousel -->
-  <link href="{base_url}asset/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-  <link href="{base_url}asset/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
-  <!-- Fancy Box -->
-  <link href="{base_url}asset/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="{base_url}asset/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-  <link href="{base_url}asset/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
-  <!-- CUSTOM CSS -->
-  <link href="{base_url}asset/css/style.css" rel="stylesheet">
-  <link href="{base_url}asset/css/kemontar.css" rel="stylesheet">
+  <link rel="stylesheet" href="{base_url}asset/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{base_url}asset/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="{base_url}asset/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="{base_url}asset/css/style.css">
+
+  <script src="https://kit.fontawesome.com/6f62d3d090.js" crossorigin="anonymous"></script>
+
   {css_file}
 
   <!-- FAVICON -->
-  <link href="{base_url}asset/images/logo-kemontar.png" type="image/x-icon"  rel="shortcut icon">
+  <link href="{base_url}asset/img/logo.png" type="image/x-icon"  rel="shortcut icon">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,87 +32,56 @@
     var base_url = '{base_url}';
   </script>
 </head>
-
-<body class="body-wrapper">
-
-
-<section class="bottom-bar">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<nav class="navbar navbar-expand-lg  navigation">
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon fa fa-bars"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav main-nav ">
-							<li class="nav-item {active_home}">
-								<a class="nav-link" href="{base_url}">Home</a>
-							</li>
-              <!-- <li class="nav-item {active_about_us}">
-                <a class="nav-link" href="{base_url}tentang-kami">Tentang Kami</a>
-              </li>
-              <li class="nav-item {active_contact_us}">
-                <a class="nav-link" href="{base_url}hubungi-kami">Hubungi Kami</a>
-              </li> -->
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-</section>
-
-{content}
-
-<!--============================
-=            Footer            =
-=============================-->
-
-<!-- Footer Bottom -->
-<footer class="footer-bottom">
-    <!-- Container Start -->
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-12">
-          <!-- Copyright -->
-          <div class="copyright">
-            <p>© {this_year}. All rights reserved.</p>
+<body>
+  <header class="container">
+      <div class="top-header">
+          <a href="{base_url}" class="logo">
+              <img src="{base_url}/asset/img/logo.jpg" alt="">
+          </a>
+          <div class="socmed">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+              <a href="#"><i class="bi bi-envelope"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
           </div>
-        </div>
-        <div class="col-sm-6 col-12">
-          <!-- Social Icons -->
-          <ul class="social-media-icons text-right">
-              <li><a class="fa fa-facebook" href="#" target="_BLANK"></a></li>
-              <li><a class="fa fa-twitter" href="#" target="_BLANK"></a></li>
-            </ul>
-        </div>
+          </div>
       </div>
-    </div>
-    <!-- Container End -->
-    <!-- To Top -->
-    <div class="top-to">
-      <a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
-    </div>
-</footer>
+      <nav class="navbar navbar-expand-md navbar-bbtf bg-brownv">
+          <a class="navbar-brand {active_home}" href="{base_url}"><i class="bi bi-house-fill"></i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarMenu">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://www.bbtf.or.id/" target="_blank">Back to Main Website</a>
+                  </li>
+                  <li class="nav-item dropdown {active_exhibition}">
+                      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exhibition Area</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{base_url}exhibition/platinum">Platinum</a>
+                        <a class="dropdown-item" href="{base_url}exhibition/gold">Gold</a>
+                        <a class="dropdown-item" href="{base_url}exhibition/silver">Silver</a>
+                      </div>
+                  </li>
+                  <li class="nav-item {active_exhibitor}">
+                      <a class="nav-link" href="{base_url}exhibitor">Exhibitor List</a>
+                  </li>
+                  <li class="nav-item {active_meeting_schedule}">
+                      <a class="nav-link" href="{base_url}meeting-schedule">Meeting Schedule</a>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </header>
 
-  <!-- JAVASCRIPTS -->
-  <script src="{base_url}asset/plugins/jquery/jquery.min.js"></script>
-  <!-- <script src="{base_url}asset/plugins/jquery-ui/jquery-ui.min.js"></script> -->
-  <script src="{base_url}asset/plugins/parsley/parsley.min.js"></script>
-  <script src="{base_url}asset/plugins/parsley/i18n/id.js"></script>
-  <script src="{base_url}asset/plugins/tether/js/tether.min.js"></script>
-  <script src="{base_url}asset/plugins/raty/jquery.raty-fa.js"></script>
-  <script src="{base_url}asset/plugins/bootstrap/dist/js/popper.min.js"></script>
-  <script src="{base_url}asset/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="{base_url}asset/plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-  <script src="{base_url}asset/plugins/slick-carousel/slick/slick.min.js"></script>
-  <script src="{base_url}asset/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="{base_url}asset/plugins/fancybox/jquery.fancybox.pack.js"></script>
-  <script src="{base_url}asset/plugins/smoothscroll/SmoothScroll.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+  {content}
+
+  <script src="{base_url}asset/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="{base_url}asset/js/bootstrap.bundle.min.js"></script>
+  <script src="{base_url}asset/js/owl.carousel.min.js"></script>
+  <script src="{base_url}asset/js/custom.js"></script>
   <script src="{base_url}asset/js/sweetalert.min.js"></script>
-  <script src="{base_url}asset/js/kemontar.js"></script>
   {js_file}
 </body>
 
