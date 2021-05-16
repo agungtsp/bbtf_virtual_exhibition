@@ -16,7 +16,7 @@ $(document).ready(function(){
         autoplay: true,
     });
     $('.owl-logo').owlCarousel({
-        loop: true,
+        loop: false,
         margin: 16,
         autoplay: true,
         nav: true,

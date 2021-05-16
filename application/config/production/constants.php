@@ -85,36 +85,20 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('APP_NAME',		'FolioPOS');
+define('APP_NAME',		'BBTF');
 define('BACKUP_DIR',	$_SERVER['DOCUMENT_ROOT'].'/../backup/');
 define('UPLOAD_DIR',	dirname(__FILE__)."/../../../images/article/");
-define('UPLOAD_PDF_DIR',	dirname(__FILE__)."/../../../upload/pdf/");
+define('UPLOAD_FILE_DIR',	dirname(__FILE__)."/../../../uploads/");
 define('EMAIL_TEMPLATE_DIR',	dirname(__FILE__)."/../../../application/views/layout/ddi/email_template/");
 define('PAGING_PERPAGE',	16);
 define('PAGING_PERPAGE_LOG',	6);
 define('LANGUAGE','indonesia');
-define('EXP_DATE_ACTIVATION_EMAIL', 7); //DAYS
-define('EXP_RESET_PASSWORD_MEMBER', 3); //DAYS
-define('EXP_CHANGE_EMAIL_MEMBER', 7); //DAYS
-define('EXP_MAX_COUNT_FAILED_LOGIN', 5); //COUNT
-define('EXP_MAX_TIME_FAILED_LOGIN', 30); //MINUTES
 define('IS_HTTPS', FALSE); //TRUE OR FALSE
-define('GOOGLE_CAPTCHA_SITE_KEY', '6Ldj5QMTAAAAAOZBu1_QsBXJ4rsNqS-VvqCliys4');
-define('GOOGLE_CAPTCHA_SECRET_KEY', '6Ldj5QMTAAAAAL2VnxsZie53RVBmp4Xjb7Lm0TA-');
-define('USE_API_EXPERIAN', FALSE);
-define('GOOGLE_ANALYTICS', FALSE);
-define('MAX_LENGTH_CHAR_COMMENT', 800);
-define('MAX_UPLOAD_SIZE', 2000000);
-define('MAX_UPLOAD_SIZE_CHEETAH', 2000000);
-define('REPLACE_BLACK_LIST_WORDS', '#');
-define('FEATURE_ICON',	dirname(__FILE__)."/../../asset/images/feature_icon/");
-define('ELFINDER_PATH_UPLOAD',	dirname(__FILE__)."/../../assets/files/");
-
-define('URL_COMETCHAT_API',	"http://tri-pc/gmsghb/cometchat/api/index.php");
-define('COMETCHAT_API_KEY',	"6aef6b289ec4b556bc125d6ec9f3d785");
+define('MAX_UPLOAD_SIZE', 5242880); //5Mb 5*1024*1024
 
 define('IS_DEVELOPMENT', 1);
-define('EMAIL_CUSTOMER_SERVICE', '');
+define('ASSET_VERSION', 1);
 
-/* End of file constants.php */
-/* Location: ./application/config/constants.php */
+define('API_FCM_KEY', 'AAAAvFrRhoU:APA91bEdX5k4ZEzcJMb3zmx5BIJ_oFmDgUVbkgtKvzFFrKAco83cmE_N6jfZuO9nJ8aLuJ039BHCyB2Nqw7y66K7iZgfv9zROZm4fmoebFKsSi3_kPDfZlD8ZBG8bRWso6GDaq3HAjsn');
+
+

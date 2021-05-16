@@ -1,0 +1,174 @@
+<h1 class="page-header">{page_title}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save_with_file'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Name<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" name="name" value="{name}" id="title" class='form-control' data-parsley-required="true"  title="name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Url<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" name="uri_path" value="{uri_path}" id="uri_path" class='form-control' title="uri_path"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+								<div class="col-md-9"><select name="id_exhibitor_category" id="id_exhibitor_category" class='form-control' data-parsley-required="true" title="id_exhibitor_category">{list_category}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Page Content</label>
+								<div class="col-md-9"><textarea  name="description" rows="4" id="description" class="form-control ckeditor">{description}</textarea></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Logo<i class='req'>*</i><br>(300 x 200)</label>
+								<div class="col-md-9">{logo}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Booth Design<i class='req'>*</i><br>(1920 × 1080) </label>
+								<div class="col-md-9">{booth_design}</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Company Profile<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="file" name="company_profile[]" id="company_profile" multiple="multiple" value="{company_profile}"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Form Exhibitor<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="file" name="form_exhibitor[]" id="form_exhibitor" multiple="multiple" value="{form_exhibitor}"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Poster Product<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="file" name="poster_product[]" id="poster_product" multiple="multiple" value="{poster_product}"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Video Product<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="file" name="video_product[]" id="video_product" multiple="multiple" value="{video_product}"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Brochure Product<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="file" name="brochure_product[]" id="brochure_product" multiple="multiple" value="{brochure_product}"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Ordinal Number</label>
+								<div class="col-md-9"><input type="number" value="{ordinal_number}" id="ordinal_number" class='form-control' name="ordinal_number"></div>
+							</div>
+							<!-- <div class='form-group no-margin'>
+								<label class="col-md-3 control-label">Publish Date <i class='req'>*</i></label>
+								<div class="col-md-9">
+									<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+										<input type="text" value="{publish_date}" id="publish_date" class='form-control' name="publish_date" readonly="readonly" data-parsley-required="true" >
+										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+							</div> -->
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9"><select name="id_status_publish" id="id_status_publish" class='form-control' data-parsley-required="true" title="status_publish">{list_status_publish}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Seo Title</label>
+								<div class="col-md-9"><input type="text" value="{seo_title}" data-parsley-maxlength="200" id="seo_title" class='form-control' name="seo_title"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Description</label>
+								<div class="col-md-9"><textarea  name="meta_description" rows="4" data-parsley-maxlength="250" id="meta_description" class="form-control">{meta_description}</textarea></div>
+							</div>
+						    
+						    <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Keywords</label>
+								<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords" class='form-control' name="meta_keywords" data-parsley-maxlength="250"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#ref_id_tags").select2({
+		  tags: true,
+		  tokenSeparators: [","]
+		})
+		$('#company_profile').filer({
+			showThumbs: true,
+			files: {company_profile},
+			addMore: true,
+			excludeName: null,
+			allowDuplicates: false,
+			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+				var filerKit = inputEl.prop("jFiler"),
+					file_name = filerKit.files_list[id].file.name;
+				$.post('{this_controller}remove_file', {type: 'company_profile', file: file_name, id:"{id}"});
+			},
+		});
+		$('#form_exhibitor').filer({
+			files: {form_exhibitor},
+			showThumbs: true,
+			addMore: true,
+			excludeName: null,
+			allowDuplicates: false,
+			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+				var filerKit = inputEl.prop("jFiler"),
+					file_name = filerKit.files_list[id].file.name;
+				$.post('{this_controller}remove_file', {type: 'form_exhibitor', file: file_name, id:"{id}"});
+			},
+		});
+		$('#poster_product').filer({
+			showThumbs: true,
+			files: {poster_product},
+			addMore: true,
+			excludeName: null,
+			allowDuplicates: false,
+			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+				var filerKit = inputEl.prop("jFiler"),
+					file_name = filerKit.files_list[id].file.name;
+				$.post('{this_controller}remove_file', {type: 'poster_product', file: file_name, id:"{id}"});
+			},
+		});
+		$('#video_product').filer({
+			showThumbs: true,
+			files: {video_product},
+			addMore: true,
+			excludeName: null,
+			allowDuplicates: false,
+			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+				var filerKit = inputEl.prop("jFiler"),
+					file_name = filerKit.files_list[id].file.name;
+				$.post('{this_controller}remove_file', {type: 'video_product', file: file_name, id:"{id}"});
+			},
+		});
+		$('#brochure_product').filer({
+			showThumbs: true,
+			files: {brochure_product},
+			addMore: true,
+			excludeName: null,
+			allowDuplicates: false,
+			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+				var filerKit = inputEl.prop("jFiler"),
+					file_name = filerKit.files_list[id].file.name;
+				$.post('{this_controller}remove_file', {type: 'brochure_product', file: file_name, id:"{id}"});
+			},
+		});
+	});
+</script>

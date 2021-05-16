@@ -85,9 +85,10 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('APP_NAME',		'KEMONTAR');
+define('APP_NAME',		'BBTF');
 define('BACKUP_DIR',	$_SERVER['DOCUMENT_ROOT'].'/../backup/');
 define('UPLOAD_DIR',	dirname(__FILE__)."/../../../images/article/");
+define('UPLOAD_FILE_DIR',	dirname(__FILE__)."/../../../uploads/");
 define('EMAIL_TEMPLATE_DIR',	dirname(__FILE__)."/../../../application/views/layout/ddi/email_template/");
 define('PAGING_PERPAGE',	16);
 define('PAGING_PERPAGE_LOG',	6);
@@ -99,3 +100,5 @@ define('IS_DEVELOPMENT', 1);
 define('ASSET_VERSION', 1);
 
 define('API_FCM_KEY', 'AAAAvFrRhoU:APA91bEdX5k4ZEzcJMb3zmx5BIJ_oFmDgUVbkgtKvzFFrKAco83cmE_N6jfZuO9nJ8aLuJ039BHCyB2Nqw7y66K7iZgfv9zROZm4fmoebFKsSi3_kPDfZlD8ZBG8bRWso6GDaq3HAjsn');
+
+

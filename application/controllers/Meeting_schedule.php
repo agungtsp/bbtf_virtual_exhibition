@@ -10,7 +10,7 @@ class Meeting_schedule extends CI_Controller {
 		render('meeting_schedule',$data);
 	}
 	
-	function list(){
+	function list_data(){
 		$data['active_meeting_schedule'] = "active";
 		$data['page_name']         = "Meeting Schedule List";
 		render('meeting_schedule_list',$data);

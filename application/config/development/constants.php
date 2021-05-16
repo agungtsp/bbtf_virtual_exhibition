@@ -88,6 +88,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('APP_NAME',		'BBTF');
 define('BACKUP_DIR',	$_SERVER['DOCUMENT_ROOT'].'/../backup/');
 define('UPLOAD_DIR',	dirname(__FILE__)."/../../../images/article/");
+define('UPLOAD_FILE_DIR',	dirname(__FILE__)."/../../../uploads/");
 define('EMAIL_TEMPLATE_DIR',	dirname(__FILE__)."/../../../application/views/layout/ddi/email_template/");
 define('PAGING_PERPAGE',	16);
 define('PAGING_PERPAGE_LOG',	6);

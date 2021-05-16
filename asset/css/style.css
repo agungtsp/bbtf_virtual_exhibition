@@ -732,8 +732,8 @@ header.container {
 .logo-company .thumbnail img {
 	width: auto;
 	height: auto;
-	max-width: 90%;
-	max-height: 90%;
+	max-width: 100%;
+	max-height: 100%;
 }
 .f-virtual .video {
 	position: absolute;
@@ -764,8 +764,8 @@ header.container {
     min-width: 263px;
 }
 .f-virtual-gold .logo-company {
-	top: 162px;
-    left: 331px;
+	top: 200px;
+    left: 359px;
 }
 .f-virtual-gold .logo-company .thumbnail {
 	height: 36px;
@@ -773,24 +773,24 @@ header.container {
     width: 219px;
 }
 .f-virtual-gold .video {
-    top: 258px;
-    left: 408px;
-    width: 131px;
-    height: 70px;
+	top: 279px;
+    left: 449px;
+    width: 105px;
+    height: 78px;
 }
 .f-virtual-gold .slider {
-    top: 216px;
-    left: 625px;
-    width: 194px;
-    height: 196px;
+    top: 290px;
+    left: 611px;
+    width: 147px;
+    height: 143px;
 }
 .f-virtual-gold .slider .owl-carousel {
     border: 0;
 }
 .f-virtual-gold .slider .owl-carousel .owl-item img {
 	width: auto;
-    height: 196px;
-    min-width: 194px;
+    height: 76px;
+    min-width: 150px;
 }
 .f-virtual-gold .chair {
 	position: absolute;

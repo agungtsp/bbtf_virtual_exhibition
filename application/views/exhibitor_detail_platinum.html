@@ -1,29 +1,27 @@
 <section class="section-home container">
     <div class="f-virtual">
-        <img src="{base_url}asset/img/bg-platinum.jpg" alt="" width="100%">
+        <img src="{booth_design_url}" alt="{booth_design}" width="100%">
         <div class="lc-left">
             <a href="#" data-toggle="modal" data-target="#compro">
-                <div class="thumbnail"><img src="{base_url}asset/img/lc-left.jpg" alt=""></div>
+                <div class="thumbnail"><img src="{logo_url}" alt="{logo}"></div>
                 <div class="bg-brownv">Platinum Seller</div>
             </a>
         </div>
-        <div class="logo-company">
+        <div class="logo-company-platinum">
             <a href="#" data-toggle="modal" data-target="#guestBook">
                 <div class="thumbnail">
-                    <img src="{base_url}asset/img/logo.jpg" alt="">
+                  <img src="{base_url}asset/img/logo.jpg" alt="{logo}" class="invisible">
                 </div>
             </a>
         </div>
-        <div class="video">
-            <a href="#" data-toggle="modal" data-target="#modalVideo"><img src="{base_url}asset/img/product-video.jpg" alt="" class="w-100"></a>
+        <div class="video-platinum">
+            <a href="#" data-toggle="modal" data-target="#modalVideo"><img src="{base_url}asset/img/product-video.jpg" alt="" class="w-100 invisible"></a>
         </div>
-        <div class="slider">
+        <div class="slider-platinum">
             <div class="owl-carousel owl-theme owl-platinum">
-                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{base_url}asset/img/komodo-platinum.jpg" alt=""></a></div>
-                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{base_url}asset/img/komodo-platinum.jpg" alt=""></a></div>
-                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{base_url}asset/img/komodo-platinum.jpg" alt=""></a></div>
-                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{base_url}asset/img/komodo-platinum.jpg" alt=""></a></div>
-                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{base_url}asset/img/komodo-platinum.jpg" alt=""></a></div>
+              {list_poster_product}
+                <div class="item"><a href="#" data-toggle="modal" data-target="#brochure"><img src="{url}" alt=""></a></div>
+              {/list_poster_product}
             </div>
         </div>
     </div>
@@ -147,13 +145,21 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><a href="#" class="btn btn-outline-primary btn-sm">Download PDf <i class="fa fa-download"></i></a></h5>
+        <h5 class="modal-title">
+          {list_company_profile}
+            <a href="{url}" alt="{name}" class="btn btn-outline-primary btn-sm" target="_BLANK">Download PDF <i class="fa fa-download"></i></a>
+          {/list_company_profile}
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src="{base_url}asset/img/compro.jpg" alt="" class="w-100">
+        {list_company_profile2}
+          <object data="{url}" type="application/pdf" class="w-100 pdf-viewer">
+            <iframe src="{url}"></iframe>
+          </object>
+        {/list_company_profile2}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
@@ -166,13 +172,21 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><a href="#" class="btn btn-outline-primary btn-sm">Download Product Brochure <i class="fa fa-download"></i></a></h5>
+        <h5 class="modal-title">
+          {list_brochure_product}
+            <a href="{url}" alt="{name}" class="btn btn-outline-primary btn-sm" target="_BLANK">Download Product Brochure <i class="fa fa-download"></i></a>
+          {/list_brochure_product}
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src="{base_url}asset/img/brochure.jpg" alt="" class="w-100">
+        {list_brochure_product2}
+          <object data="{url}" type="application/pdf" class="w-100 pdf-viewer">
+            <iframe src="{url}"></iframe>
+          </object>
+        {/list_brochure_product2}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
@@ -192,15 +206,14 @@
       </div>
       <div class="modal-body">
         <div class="row">
+          {list_video_product}
             <div class="col-md-6 mb-4">
-                <iframe width="100%" height="205" src="https://www.youtube.com/embed/maM5BaqYBmk?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <video width="100%" height="205" controls>
+                <source src="{url}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
-            <div class="col-md-6 mb-4">
-                <iframe width="100%" height="205" src="https://www.youtube.com/embed/6-7gZ5YqiCY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-6 mb-4">
-                <iframe width="100%" height="205" src="https://www.youtube.com/embed/I6eug4z8okA?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+          {/list_video_product}
         </div>
       </div>
       <div class="modal-footer">

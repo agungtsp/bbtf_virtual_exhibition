@@ -1,0 +1,54 @@
+
+.pdf-viewer{
+    min-height: 500px;
+    margin-bottom: 20px;
+}
+.logo-company-platinum{
+    position: absolute;
+    top: 115px;
+    left: 280px;
+}
+.f-virtual .video-platinum{
+    position: absolute;
+    top: 285px;
+    left: 310px;
+    width: 300p;
+    height: 100px;
+    min-height: 300px !important;
+}
+.f-virtual .slider-platinum{
+    position: absolute;
+    top: 248px;
+    left: 542px;
+    overflow: hidden;
+    width: 259px;
+    height: 141px;
+}
+.logo-company-platinum{
+    top: 115px;
+    left: 280px;
+}
+.logo-company-platinum .thumbnail{
+    position: relative;
+    width: 123px;
+    height: 102px;
+}
+.video-platinum a{
+    width: 103px;
+    height: 56px;
+    display: block;
+}
+.f-virtual-gold .logo-company{
+    top: 198px;
+    left: 437px;
+}
+.f-virtual-gold .logo-company a{
+    display: block;
+    width: 63px;
+    height: 40px;
+}
+.video a{
+    width: 103px;
+    height: 56px;
+    display: block;
+}

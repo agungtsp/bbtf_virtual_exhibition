@@ -3,15 +3,11 @@
 		<h4>Welcome To</h4>
 		<h2>BBTF Virtual Exhibition</h2>
 		<div class="row mt-4">
-			<div class="col-4 text-center">
-				<a href="{base_url}exhibition/platinum"><img src="{base_url}/asset/img/new-icon_platinum.png" alt=""></a>
-			</div>
-			<div class="col-4 text-center">
-				<a href="{base_url}exhibition/gold"><img src="{base_url}/asset/img/new-icon_gold.png" alt=""></a>
-			</div>
-			<div class="col-4 text-center">
-				<a href="{base_url}exhibition/silver"><img src="{base_url}/asset/img/new-icon_silver.png" alt=""></a>
-			</div>
+			{list_exhibitor_category}
+				<div class="col-4 text-center">
+					<a href="{base_url}exhibition/{uri_path}"><img src="{logo_url}" alt="{name}"></a>
+				</div>
+			{/list_exhibitor_category}
 		</div>
 	</div>
 </section>
