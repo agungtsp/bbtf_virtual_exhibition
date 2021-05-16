@@ -1,3 +1,4 @@
+<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
 <section class="section-home container">
     <div class="meeting-schedule px-md-5 pb-4">
         <table cellspacing="0" cellpadding="5" border="0" width="100%">
@@ -6,92 +7,39 @@
                 <th>PROGRAM</th>
                 <th>LINK</th>
             </tr>
-            <tr>
-                <td colspan="3" class="date">Tue, 8 June 2021</td>
-            </tr>
-            <tr>
-                <td>All Day</td>
-                <td>Participant Buyer / Trade Buyer / Media Arrival & Booth Setup</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td colspan="3" class="date">Tue, 9 June 2021</td>
-            </tr>
-            <tr>
-                <td>12.00 - 20.00</td>
-                <td>Seller Registration</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>12.00 - 20.00</td>
-                <td>Booth Setup for Exhibitor / Seller</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>14.00 - 20.00</td>
-                <td>Buyer / Trade Buyer / Media Registration</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>16.00 - 16.30</td>
-                <td>Seller Breafing Session</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>16.00 - 16.30</td>
-                <td>Buyer Breafing Session</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>16.30 - 17.30</td>
-                <td>Seller Meets Buyer Session</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>16.30 - 18.00</td>
-                <td>Opening Ceremony & Opening BBTF Press Conference</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td colspan="3" class="date">Tue, 10 June 2021</td>
-            </tr>
-            <tr>
-                <td>10.00 - 12.00</td>
-                <td>B2B BBTF TRAVEX</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>12.00 - 13.00</td>
-                <td>Hosted Lunch for Buyer & Media Only</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>13.00 - 17.00</td>
-                <td>B2B BBTF TRAVEX</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td colspan="3" class="date">Tue, 11 June 2021</td>
-            </tr>
-            <tr>
-                <td>12.00 - 12.00</td>
-                <td>B2B BBTF TRAVEX</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>12.00 - 13.00</td>
-                <td>Hosted Lunch for Buyer & Media Only</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
-            <tr>
-                <td>13.00 - 17.00</td>
-                <td>B2B BBTF TRAVEX</td>
-                <td><a href="meetings.html" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
-            </tr>
+            {list_meeting}
+                <tr>
+                    <td colspan="3" class="date">{start_date}</td>
+                </tr>
+                {list_data}
+                    <tr>
+                        <td>{time}</td>
+                        <td>{name}</td>
+                        <td><a href="#" onclick="createFrameAndJoinRoom('{meeting_url}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                    </tr>
+                {/list_data}
+            {/list_meeting}
         </table>
     </div>
 </section>
-
+<script>
+    function createFrameAndJoinRoom(meeting_url) {
+        window.callFrame = window.DailyIframe.createFrame({
+            showFullscreenButton: true,
+            // showLeaveButton: true,
+            showParticipantsBar: true,
+            iframeStyle: {
+                position: 'fixed',
+                border: '1px solid black',
+                width: '800px',
+                height: '500px',
+                right: '1em',
+                bottom: '4em'
+            }
+        });
+        callFrame.join({ url: meeting_url});
+    }
+</script>
 <div class="chat">
     <div class="position-relative">
         <input type="checkbox" id="chats">

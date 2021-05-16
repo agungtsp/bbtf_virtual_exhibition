@@ -112,7 +112,6 @@ function render($view,$data='',$layout='main', $ret=false){
 	 $data['breadcrumb'] = breadcrumb();
 	 $data['page_title'] = generate_title();
 	 $data['current_url'] = current_url();
-	 $data['google_captcha_site_key'] = GOOGLE_CAPTCHA_SITE_KEY;
 	 $data['is_https'] = (IS_HTTPS) ? 1 : 0;
 	 $data['hidden_pic'] = (id_user("id_auth_user_group")==6) ? "hidden" : "";
 	 $lang = $CI->lang->language;
@@ -121,7 +120,15 @@ function render($view,$data='',$layout='main', $ret=false){
 	 }
 	$data['english_view'] = LANGUAGE == 'english' ? '' : 'hidden';
 	$data['indonesia_view'] = LANGUAGE == 'indonesia' ? '' : 'hidden';
-	
+	if($layout=='main' && substr_count(current_url(), "asset") <= 0 and substr_count(current_url(), "ajax") <= 0){
+		$CI->load->model('Page_hit_model');
+		$user_session = $CI->session->userdata('USER_SESS');
+		$data_hit['activity'] = 'page_view';
+		$data_hit['url'] = str_replace(base_url(), '', current_url());
+		$data_hit['user_create_id'] = ($user_session) ? $user_session['id'] : null;
+		$data_hit['ip'] = $CI->input->ip_address();
+		$CI->Page_hit_model->insert($data_hit);
+	}
     // end
 	 if(is_array($data)){
 		  $CI->data = array_merge($CI->data,$data);

@@ -11,65 +11,35 @@
 		</div>
 	</div>
 </section>
-
-<div class="chat">
-	<div class="position-relative">
-		<input type="checkbox" id="chats">
-		<label for="chats" class="btn-chat"><img src="{base_url}/asset/img/chats.jpg" alt="">Chat</label>
-		<div class="list-chats">
-			<div class="header">
-				Chat With Seller <label for="chats"><i class="bi bi-x"></i></label>
-			</div>
-			<div class="body">
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-				<label for="chats-content" class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="name">Company Name</div>
-				</label>
-			</div>
-		</div>
-		<input type="checkbox" id="chats-content">
-		<div class="chats-content">
-			<div class="header">
-				Company Name <label for="chats-content"><i class="bi bi-x"></i></label>
-			</div>
-			<div class="body">
-				<div class="list">
-					<div class="logo thumbnail"><img src="{base_url}/asset/img/company-logo.jpg" alt=""></div>
-					<div class="text">
-						<p><span>daf af dsafasdf</span></p>
-						<p><span>daf af dsafasdf adf asdf afd fadfa dfa dfadfasf</span></p>
-						<p><span>daf af dsafasd adf sadf asdfsad fasfdsf</span></p>
-					</div>
-				</div>
-				<div class="list answer">
-					<div class="text">
-						<p><span>daf af dsafasdf</span></p>
-						<p><span>daf af dsafasdf adf asdf afd</span></p>
-						<p><span>daf af dsafasd adf sadf asdfsad fasfdsf</span></p>
-					</div>
-				</div>
-			</div>
-			<textarea class="form-control" placeholder="Typing..."></textarea>
-		</div>
-	</div>
-</div>
+<script defer src="https://widget-js.cometchat.io/v2/cometchatwidget.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+	CometChatWidget.init({
+		"appID": "33452b15fa9dfb5",
+		"appRegion": "us",
+	}).then(response => {
+		console.log("Initialization completed successfully");
+		//You can now call login function.
+		CometChatWidget.login({
+			"authToken": "superhero1_162118462069ab8a4567aa771f9ac6097eff4cf3"
+		}).then(response => {
+			CometChatWidget.launch({
+				"widgetID": "f32d4159-2271-495f-bdf4-78253d7440b9",
+				"docked": "true",
+				"alignment": "right", //left or right
+				"roundedCorners": "true",
+				"height": "450px",
+				"width": "400px",
+				"defaultID": 'general', //default UID (user) or GUID (group) to show,
+				"defaultType": 'group' //user or group
+			});
+		}, error => {
+			console.log("User login failed with error:", error);
+			//Check the reason for error and take appropriate action.
+		});
+	}, error => {
+		console.log("Initialization failed with error:", error);
+		//Check the reason for error and take appropriate action.
+	});
+});
+</script>

@@ -16,7 +16,7 @@
 					<div class="row-fluid">
 						<div class="col-sm-12">
 							<span class='col-sm-12'>
-								<div class='text-right'><a class="btn btn-primary insert" href="{this_controller}add"><i class="fa fa-plus"></i> Add New</a></div>
+								<div class='text-right'><a class="btn btn-primary insert tangan" href="{this_controller}add"><i class="fa fa-plus"></i> Add New</a></div>
 							</span>
 						</div>
 					</div>
@@ -27,25 +27,19 @@
 								<thead>
 									<tr>
 										<th class="center" width="20">No</th>
-										
-										<th class="center" title='Sort' id='a-name'>Name <span></span></th>
-										<th class="center" title='Sort' id='a-name'>Category <span></span></th>
-										<th class="center" title='Sort' id='a-ordinal_number'>Hits <span></span></th>
-										<th class="center" title='Sort' id='a-ordinal_number'>Ordinal Number <span></span></th>
-										
-										<!-- <th class="center" title='Sort' id='a-publish_date'>Publish Date <span></span></th> -->
-										<th class="center" title='Sort' id='a-id_status_publish'>Status <span></span></th>
-										<th class="center" width="100">Action</th>
+										<th class="center" title='Sort' width="200" id='a-name'>Name <span></span></th>
+										<th class="center" title='Sort' id='a-meeting_url'>Meeting URL <span></span></th>
+										<th class="center" title='Sort' id='a-start_date'>Start Date <span></span></th>
+										<th class="center" title='Sort' id='a-exhibitor_id'>Exhibitor <span></span></th>
+										<th class="center" title='Sort' id='' width="94">Status <span></span></th>
+										<th class="center" width="50">Action</th>
 									</tr>
-								<tr class='filter'>
+									<tr class='filter'>
 										<td></td>
-										
 										<td><input type='text' class='cari form-control' id='search_name' placeholder='Search...'></td>
-										<td><select id="search_ref_exhibitor_category" class='cari form-control'>{list_ref_exhibitor_category}</select></td>
 										<td></td>
-										<td><input type='number' class='cari form-control' id='search_ordinal_number' placeholder='Search...'></td>
-										<!-- <td></td> -->
-										
+										<td></td>
+										<td><select id="search_exhibitor_id" class='cari form-control'>{list_exhibitor}</select></td>
 										<td><select id="search_status_publish" class='cari form-control'>{list_status_publish}</select></td>
 										<td></td>
 									</tr>

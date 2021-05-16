@@ -30,6 +30,8 @@ class Exhibitor extends CI_Controller {
 			$data['list_video_product'] = get_upload_multifile($data['id'], $data['video_product'], 0);
 			$data['list_brochure_product'] = get_upload_multifile($data['id'], $data['brochure_product'], 0);
 			$data['list_brochure_product2'] = $data['list_brochure_product'];
+
+			$this->Exhibitor_model->update(array('page_hit' => (int)$data['page_hit']+=1), $data['id']);
 			render('exhibitor_detail_'.$category,$data);
 		} else {
 			redirect("404");

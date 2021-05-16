@@ -1,0 +1,17 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td class="center">{name}</td>
+		<td class="center">{meeting_url}</td>
+		<td class="center">{schedule_date}</td>
+		<td class="center">{exhibitor_name}</td>
+		<td class="center">{status_publish}</td>
+		<td class="center">
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="12">{paging}</td>
+</tr>
