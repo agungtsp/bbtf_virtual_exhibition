@@ -56,10 +56,10 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 switch ($_SERVER['HTTP_HOST']) {
-    case '13.228.214.159':
+    case '203.77.239.228':
         define('ENVIRONMENT', 'staging');
         break;
-    case 'foliopos.com':
+    case 'bbtf.com':
         define('ENVIRONMENT', 'production');
         break;
     default:
