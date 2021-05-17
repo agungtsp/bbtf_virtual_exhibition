@@ -104,3 +104,51 @@ label.error, label.success, label.warning, label.info {
 .text-dark{
   color: #000;
 }
+@keyframes fa-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+.fa-blink {
+-webkit-animation: fa-blink .75s linear infinite;
+-moz-animation: fa-blink .75s linear infinite;
+-ms-animation: fa-blink .75s linear infinite;
+-o-animation: fa-blink .75s linear infinite;
+animation: fa-blink .75s linear infinite;
+}
+.status_ongoing{
+  display: inline-block;
+  border: 1px solid;
+  padding: 2px;
+  background: #f9f9f9;
+  border-radius: 3px;
+  margin-top: 3px;
+}
+i.dot-online {
+	width: 10px;
+	height: 10px;
+	float: left;
+	border-radius: 50%;
+	background: #36D575;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	-o-border-radius:50%;
+	border: 2px solid #CBE9DC;
+	animation-name: greenPulse;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
+	-webkit-animation-name: greenPulse;
+	-webkit-animation-duration: 10s;
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-name: greenPulse;
+	-moz-animation-duration: 10s;
+	-moz-animation-iteration-count: infinite;
+	-o-animation-name: greenPulse;
+	-o-animation-duration: 10s;
+	-o-animation-iteration-count: infinite;
+	margin-right: 5px;
+	margin-top:3px;
+}
+i.dot-offline { 
+  width: 10px;height: 10px;float: left;border-radius: 50%;border: 2px solid #FFFFFF;background-color: red;margin-right: 5px;margin-top:3px;
+}

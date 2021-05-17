@@ -1,0 +1,20 @@
+Cometchat
+Url: https://www.cometchat.com/pro-pricing 
+Price: $149/month
+Users: 1.000
+
+Daily Co
+Url: https://www.daily.co/pricing and https://www.daily.co/blog/pricing-our-video-calling-api/
+Price: $9/month
+remove "Powered by Daily" Price: $199/month
+Audio: $0.00099/min
+Video: $0.004/min
+Room: 1.000
+
+Example A: Launch
+$9/month Launch plan includes 2,000 participant-minutes per month.
+Additional 13,000 participant-minutes are $.004 x 13,000 = $52.
+Total monthly invoice is $61.
+
+Formula: N * minutes = participant-minutes
+the number of participants (N) multiplied by the meeting length.

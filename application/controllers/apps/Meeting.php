@@ -46,6 +46,7 @@ class Meeting extends CI_Controller {
 	}
 	function records(){
 		$data = $this->Meeting_model->records();
+		$data['token_dailyco'] = DAILY_CO_TOKEN;
 		render('apps/meeting/records',$data,'blank');
 	}	
 	

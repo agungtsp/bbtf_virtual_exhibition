@@ -2,7 +2,7 @@
 	<tr>
 		<td class="center">{nomor}</td>
 		<td class="center">{name}</td>
-		<td class="center">{meeting_url}</td>
+		<td class="center" id="room_name" data-room_name="{room_name}">{meeting_url}<br><span class="status_ongoing"><i class="dot-offline"> </i> Offline</span></td>
 		<td class="center">{schedule_date}</td>
 		<td class="center">{exhibitor_name}</td>
 		<td class="center">{status_publish}</td>
@@ -15,3 +15,31 @@
 <tr class="footer">
 	<td colspan="12">{paging}</td>
 </tr>
+<script>
+	$('#grid1 table tbody > tr').each(function(i, obj) {
+		var id_room_name = $(this).find('#room_name');
+		var id_status_ongoing = id_room_name.find('.status_ongoing');
+		var room_name = id_room_name.attr("data-room_name");
+		if(room_name){
+			$.ajax({
+				url         : 'https://api.daily.co/v1/meetings?room='+room_name,
+				type        : "GET",
+				dataType	: 'json',
+				headers: {
+					"Accept": 'application/json',
+					"Authorization": 'Bearer {token_dailyco}'
+				},
+				error		: function (ret) {
+
+				},
+				success     : function(ret){
+					if(ret.data[0]){
+						if(ret.data[0].ongoing){
+							id_status_ongoing.html('<i class="dot-online"> </i> Ongoing');
+						}
+					}
+				}
+			})	
+		}
+	});
+</script>
