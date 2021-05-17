@@ -13,7 +13,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
-/vendor/
 
 uploads/request_features/*
 !uploads/request_features/index.html
