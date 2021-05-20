@@ -42,7 +42,7 @@ function sent_mail($email,$config=array()){
 	 }
 	 else{
 		 $ret['error'] 	= 0;
-		 $to = is_array($email['to']) ? implode(',',$email[to]) : $email[to];
+		 $to = is_array($email['to']) ? implode(',',$email['to']) : $email['to'];
 		 $ret['message']	= "email terkirim ke $to";
 	 }
 	 return $ret;

@@ -251,7 +251,7 @@ class Account extends REST_Controller {
                 $emailTmp = $this->getEmailTemplate(1);
                 
                 $dataEmailContent['userid'] = $row->userid;
-                $dataEmailContent['fullname'] = $row->username;
+                $dataEmailContent['full_name'] = $row->full_name;
                 $dataEmailContent['email'] = $row->email;
                 $dataEmailContent['password'] = $data_now;
                 $emailContent = $this->parser->parse_string($emailTmp['page_content'], $dataEmailContent, TRUE);

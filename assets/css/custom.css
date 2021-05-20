@@ -152,3 +152,28 @@ i.dot-online {
 i.dot-offline { 
   width: 10px;height: 10px;float: left;border-radius: 50%;border: 2px solid #FFFFFF;background-color: red;margin-right: 5px;margin-top:3px;
 }
+i.dot-finish {
+	width: 10px;
+	height: 10px;
+	float: left;
+	border-radius: 50%;
+	background: grey;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	-o-border-radius:50%;
+	border: 2px solid #CBE9DC;
+	animation-name: greenPulse;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
+	-webkit-animation-name: greenPulse;
+	-webkit-animation-duration: 10s;
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-name: greenPulse;
+	-moz-animation-duration: 10s;
+	-moz-animation-iteration-count: infinite;
+	-o-animation-name: greenPulse;
+	-o-animation-duration: 10s;
+	-o-animation-iteration-count: infinite;
+	margin-right: 5px;
+	margin-top:3px;
+}

@@ -2,7 +2,7 @@
 	<tr>
 		<td class="center">{nomor}</td>
 		<td class="center">{name}</td>
-		<td class="center" id="room_name" data-room_name="{room_name}">{meeting_url}<br><span class="status_ongoing"><i class="dot-offline"> </i> Offline</span></td>
+		<td class="center" id="room_name" data-datetime_start="{start_date} 00:00" data-room_name="{room_name}">{meeting_url}<br><span class="status_ongoing"><i class="dot-offline"> </i> Offline</span></td>
 		<td class="center">{schedule_date}</td>
 		<td class="center">{exhibitor_name}</td>
 		<td class="center">{status_publish}</td>
@@ -20,6 +20,7 @@
 		var id_room_name = $(this).find('#room_name');
 		var id_status_ongoing = id_room_name.find('.status_ongoing');
 		var room_name = id_room_name.attr("data-room_name");
+		var datetime_start = convert_to_timestamp(id_room_name.attr("data-datetime_start"));
 		if(room_name){
 			$.ajax({
 				url         : 'https://api.daily.co/v1/meetings?room='+room_name,
@@ -33,13 +34,34 @@
 
 				},
 				success     : function(ret){
-					if(ret.data[0]){
-						if(ret.data[0].ongoing){
-							id_status_ongoing.html('<i class="dot-online"> </i> Ongoing');
+					if(ret.total_count > 0){
+						console.log(ret);
+						if(ret.data[0]){
+							console.log(ret.data[0].start_time);
+							if(ret.data[0].ongoing){
+								id_status_ongoing.html('<i class="dot-online"> </i> Ongoing');
+							} else {
+							// } else if(ret.data[0].start_time >= datetime_start) {
+								id_status_ongoing.html('<i class="dot-finish"> </i> Selesai');
+							}
 						}
 					}
 				}
 			})	
 		}
 	});
+
+	function convert_to_timestamp(dateString){
+		// var dateString = '17-09-2013 10:08',
+		if(dateString){
+			var dateTimeParts = dateString.split(' '),
+				timeParts = dateTimeParts[1].split(':'),
+				dateParts = dateTimeParts[0].split('-'),
+				date;
+			date = new Date(dateParts[2], parseInt(dateParts[1], 10) - 1, dateParts[0], timeParts[0], timeParts[1]);
+			return date.getTime();
+		} else {
+			return "";
+		}
+	}
 </script>

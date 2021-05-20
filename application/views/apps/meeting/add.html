@@ -56,6 +56,10 @@
 									<div class="col-md-9"><select name="exhibitor_id" id="exhibitor_id" class='form-control' title="exhibitor_id">{list_exhibitor}</select></div>
 								</div>
 								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Buyers</label>
+									<div class="col-md-9"><select name="participants[]" id="participants" class='form-control' title="participants" multiple>{list_participants}</select></div>
+								</div>
+								<div class="form-group  no-margin">
 									<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
 									<div class="col-md-9"><select name="id_status_publish" id="id_status_publish" class='form-control' data-parsley-required="{validation}" title="id_status_publish">{list_status_publish}</select></div>
 								</div>
@@ -66,3 +70,11 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		var participants = {participants};
+		if(participants){
+			$('#participants').val(participants).change();
+		}
+	});
+</script>

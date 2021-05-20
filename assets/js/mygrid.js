@@ -247,7 +247,7 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 							var idx = $(this).attr('id');
 							var link = $(this).attr('data-url-rm');
 							var base_link = $(this).attr('data-base-url');
-							var text = ($(this).attr('data-text')) ? $(this).attr('data-text') : "Hapus Data ?";
+							var text = ($(this).attr('data-text')) ? $(this).attr('data-text') : "Delete Data ?";
 							var text_msg = ($(this).attr('data-msg')) ? $(this).attr('data-msg') : "Data deleted successfully";
 							if(base_link) {
 								this_controller = base_url+'apps/news/';
@@ -262,6 +262,64 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 									success		: function(msg){
 									    my_grid(order_id);
 									    //alert('Data deleted successfully');
+									    if(text_msg=="return"){
+									    	msg = jQuery.parseJSON(msg);
+									    	text_msg = msg.message;
+									    }
+									    $.gritter.add({title:page_name,text:text_msg});
+									    loadingcomplete();
+									}
+								})
+							}
+							event.preventDefault();
+						});
+						$('.approve').click(function(event){
+							var idx = $(this).attr('id');
+							var link = $(this).attr('data-url-rm');
+							var base_link = $(this).attr('data-base-url');
+							var text = ($(this).attr('data-text')) ? $(this).attr('data-text') : "Approve this User ?";
+							var text_msg = ($(this).attr('data-msg')) ? $(this).attr('data-msg') : "User has been Approved";
+							if(base_link) {
+								this_controller = base_url+'apps/news/';
+							}
+
+							if(confirm(text)){
+								loading();
+								$.ajax({
+									url 		: this_controller+link,
+									data 		: 'iddel='+ idx,
+									type 		: 'POST',
+									success		: function(msg){
+									    my_grid(order_id);
+									    if(text_msg=="return"){
+									    	msg = jQuery.parseJSON(msg);
+									    	text_msg = msg.message;
+									    }
+									    $.gritter.add({title:page_name,text:text_msg});
+									    loadingcomplete();
+									}
+								})
+							}
+							event.preventDefault();
+						})
+						$('.disapprove').click(function(event){
+							var idx = $(this).attr('id');
+							var link = $(this).attr('data-url-rm');
+							var base_link = $(this).attr('data-base-url');
+							var text = ($(this).attr('data-text')) ? $(this).attr('data-text') : "Disapprove this User ?";
+							var text_msg = ($(this).attr('data-msg')) ? $(this).attr('data-msg') : "User has been Disapprove";
+							if(base_link) {
+								this_controller = base_url+'apps/news/';
+							}
+
+							if(confirm(text)){
+								loading();
+								$.ajax({
+									url 		: this_controller+link,
+									data 		: 'iddel='+ idx,
+									type 		: 'POST',
+									success		: function(msg){
+									    my_grid(order_id);
 									    if(text_msg=="return"){
 									    	msg = jQuery.parseJSON(msg);
 									    	text_msg = msg.message;

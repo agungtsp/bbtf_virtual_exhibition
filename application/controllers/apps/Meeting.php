@@ -22,6 +22,7 @@ class Meeting extends CI_Controller {
 			$data['proses'] = 'Update';
 			$data['id']     = $id;
 			$data['start_date'] = iso_date($data['start_date']);
+			$data['participants']     = json_encode(explode(',', $data['participants']));
 		}
 		else{
 			$data['last_edited']                  = '';
@@ -37,11 +38,13 @@ class Meeting extends CI_Controller {
 			$data['uri_path']                         = '';
 			$data['room_name']                         = '';
 			$data['start_date']     = date('d-m-Y');
+			$data['participants']     = json_encode([]);
 		}
 		$logo         = image($data['logo'],'large');
 		$data['logo'] = imagemanager2('logo',$logo,'','logo',$data['logo']);
 		$data['list_status_publish'] = selectlist2(array('table'=>'status_publish','title'=>'All Status','selected'=>$data['id_status_publish']));
 		$data['list_exhibitor'] = selectlist2(array('table'=>'exhibitor','title'=>'All Exhibitor','selected'=>$data['exhibitor_id']));
+		$data['list_participants'] = selectlist2(array('table'=>'auth_user','no_title'=>1,'name'=>'email', 'id'=> 'id_auth_user', 'where' => 'id_auth_user_grup = 4 and id_ref_user_category in (2)' ));
 		render('apps/meeting/add',$data,'apps');
 	}
 	function records(){
@@ -54,7 +57,6 @@ class Meeting extends CI_Controller {
 		$this->layout 			= 'none';
 		$post 					= purify(null_empty($this->input->post()));
 		$ins_id 				= '';
-
 		$this->form_validation->set_rules('name', '"name"', 'required'); 
 		$this->form_validation->set_rules('id_status_publish', '"status"', 'required');
 		$this->form_validation->set_rules('start_date', '"status"', 'required');
@@ -66,6 +68,7 @@ class Meeting extends CI_Controller {
 		else{   
 			$this->db->trans_start();   
 			$post['start_date'] = iso_date($post['start_date']);
+			$post['participants'] = ($post['participants']) ? implode(',', $post['participants']) : null;
 			$generate_meeting['name'] = substr($post['room_name'], 0, 25); 
 			try {
 				$meeting = $this->generateDailyCo($generate_meeting);

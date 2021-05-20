@@ -70,6 +70,9 @@ class Member extends CI_Controller {
 			// $data['data'][$key]['name'] = quote_form($value['name']);
 			$data['data'][$key]['publish_date'] = iso_date($value['publish_date']);
 			$data['data'][$key]['banned_title'] = ($value['is_banned']==1) ? 'Aktifkan User' : 'Nonaktifkan User';
+			$data['data'][$key]['show_approve'] = ($value['id_auth_user_grup']==3) ? '' : 'hidden';
+			$data['data'][$key]['show_disapprove'] = ($value['id_auth_user_grup']==4) ? '' : 'hidden';
+			$data['data'][$key]['banned_title'] = ($value['is_banned']==1) ? 'Aktifkan User' : 'Nonaktifkan User';
 		}
 		render('apps/member/records',$data,'blank');
 	}	
@@ -152,6 +155,50 @@ class Member extends CI_Controller {
 		detail_log();
 		insert_log("Delete User Management");
 	}
+	function approve(){
+		auth_update();
+		$id = $this->input->post('iddel');
+		$post['id_auth_user_grup'] = 4;
+		$ret['message'] = 'Update Success';
+		$act			= "Update User Management";
+		$this->Member_model->update($post,$id);
+
+		$this->load->library('parser');
+		$this->load->helper('mail');
+		$this->load->model('model_user','model');
+		$emailTmp = $this->getEmailTemplate(3);
+		$data = $this->Member_model->findById($id);
+		$dataEmailContent['full_name'] = $data['full_name'];
+		$dataEmailContent['email'] = $data['email'];
+		$emailContent = $this->parser->parse_string($emailTmp['page_content'], $dataEmailContent, TRUE);
+
+		$mail['to'] = $data['email'];
+		$mail['subject'] = $emailTmp['subject'];
+		$mail['content'] = $emailContent;
+		sent_mail($mail);
+		detail_log();
+		insert_log("Approved User Management");
+	}
+	function disapprove(){
+		auth_update();
+		$id = $this->input->post('iddel');
+		$post['id_auth_user_grup'] = 3;
+		$ret['message'] = 'Update Success';
+		$act			= "Update User Management";
+		$this->Member_model->update($post,$id);
+		detail_log();
+		insert_log("Disapprove User Management");
+	}
+
+	function getEmailTemplate($idEmail='')
+    {
+        if ($idEmail == '') {
+            exit('ID Email Required!');
+        }
+        $where['id'] = $idEmail;
+        $emailTmp = $this->db->get_where('email_tmp', $where)->row_array();
+        return $emailTmp;
+    }
 }
 
 /* End of file frontend_menu.php */

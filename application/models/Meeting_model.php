@@ -25,6 +25,7 @@ class Meeting_model extends  CI_Model{
 				$schedule = iso_date($value['start_date']);
 				$schedule .= ($value['start_time'] && $value['end_time']) ? " From ". $value['start_time'] . " To " . $value['end_time'] : ' For All Day';
 				$data[$key]['schedule_date'] = $schedule;
+				$data[$key]['start_date'] = iso_date($value['start_date']);
 			}
 		} else {
 			return $query->num_rows();
