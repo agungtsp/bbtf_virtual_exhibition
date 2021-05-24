@@ -92,6 +92,11 @@ function render($view,$data='',$layout='main', $ret=false){
 	 if($layout=='apps'){
 		$data['is_enable_export_excel'] = (group_id() == 1 or group_id() == 4 or group_id() == 5) ? '' : 'invis';
 	 }
+	 if($layout=='main'){
+		if(!get_user_session()){
+			redirect(base_url()."login");
+		}
+	 }
 	 if(!$CI->data['js_file']){
 		  $data['js_file'] = '';
 	 }
@@ -104,6 +109,7 @@ function render($view,$data='',$layout='main', $ret=false){
 	 if($CI->uri->segment(2)){
 	 	$data['product_category'] = $CI->uri->segment(2);
 	 }
+	 $data['show_logout'] = (get_user_session()) ? "" : "hidden";
 	 $data['app_name'] = APP_NAME;
 	 $data['language']		=  LANGUAGE;
 	 $data['this_year'] = date('Y');
@@ -1256,4 +1262,13 @@ function set_response($http_code, $data, $message = '', $error='')
 	}
 
 	return $CI->response($return, $http_code);
+}
+
+function get_user_session(){
+	$CI = & get_instance();
+	$user_sess = $CI->session->userdata('MEM_SESS');
+	if(isset($user_sess['id'])){
+		$user_sess = $CI->db->get_where('auth_user', array('id_auth_user'=>$user_sess['id']))->row_array();
+	}
+	return $user_sess;
 }

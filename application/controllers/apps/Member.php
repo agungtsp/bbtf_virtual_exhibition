@@ -42,6 +42,7 @@ class Member extends CI_Controller {
 		$data['checked_mr']  = $data['title'] == 'mr' ? 'checked' : '';
 		$data['checked_mrs'] = $data['title'] == 'mrs' ? 'checked' : '';
 		$data['checked_ms']  = $data['title'] == 'ms' ? 'checked' : '';
+		$data['list_exhibitor'] = selectlist2(array('table'=>'exhibitor','title'=>'All Exhibitor','selected'=>$data['exhibitor_id']));
 
 		$data['list_user_group'] 		= selectlist2(array('table'=>'auth_user_grup','id'=>'id_auth_user_grup','name'=>'grup','selected'=>$data['id_auth_user_grup'],'title'=>'All User Group', 'where' => "id_auth_user_grup in (3, 4)"));
 		$data['list_ref_country'] 		= selectlist2(array('table'=>'ref_country','title'=>'All Country','selected'=>$data['id_ref_country'], 'where' => array("is_delete" => 0)));

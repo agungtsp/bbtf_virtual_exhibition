@@ -28,7 +28,7 @@ class Auth_model extends CI_Model
 				if ($password == $userpass && $password != "") {
 					$this->load->library("session");
 					if($row->id_auth_user_grup==4 || $row->id_auth_user_grup==3){
-						set_flash_session('error_login','Akun ini tidak bisa hanya bisa login melalui aplikasi Android.');
+						set_flash_session('error_login','This account invalid');
 					} else if($row->is_banned==1){
 						set_flash_session('error_login','Anda tidak memiliki izin untuk mengakses web ini.');
 						$data['activity'] = "Banned User : $userid";

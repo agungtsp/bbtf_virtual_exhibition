@@ -22,7 +22,7 @@ class LoginModel extends CI_Model
 					$this->load->library("session");
 					if($row->id_auth_user_grup==1 || $row->id_auth_user_grup==2){
 						$data_return['message'] = 'Admin can only login via CMS';
-					} else if($row->is_banned==1){
+					} else if($row->id_auth_user_grup==3){
 						$data_return['message'] = "Your account in review, please wait and you'll get notif by email";
 						$data['activity'] = "Account in review";
 					} else {
@@ -33,14 +33,15 @@ class LoginModel extends CI_Model
 							'id_auth_user'=>$row->id_auth_user,
 							'id_ref'=>$row->id_ref,
 							'type'=>$row->tipe,
-							'id_ref_user_category'=>$row->id_ref_user_category
+							'id_ref_user_category'=>$row->id_ref_user_category,
+							'exhibitor_id'=>$row->exhibitor_id,
 						);
 						$this->load->model('LoginTransactionModel');
 						$this->LoginTransactionModel->check_user($user_sess);
 						$this->session->set_userdata('MEM_SESS',$user_sess);
 						$data_return['message'] = 'Login Success';
 						$data['activity'] 		= "Login";
-						$data['error'] = 0;
+						$data_return['error'] = 0;
 					}
 				}
 				else {

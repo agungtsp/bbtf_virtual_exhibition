@@ -54,14 +54,14 @@
 								<label class="col-md-3 control-label">Phone number<i class='req'>*</i></label>
 								<div class="col-md-9"><input type="text" value="{phone}" id="phone" class='form-control' data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$" data-parsley-required="true"  name="phone"></div>
 							</div>
-
-							<div class="form-group  no-margin">
-								<label class="col-md-3 control-label">City<i class='req'>*</i></label>
-								<div class="col-md-9"><input type="text" value="{city}" id="city" class='form-control' data-parsley-required="true"  name="city"></div>
-							</div>
+							
 							<div class="form-group  no-margin">
 								<label class="col-md-3 control-label">Country <i class='req'>*</i></label>
 								<div class="col-md-9"><select class="form-control" id="id_ref_country" name="id_ref_country" data-parsley-required="true">{list_ref_country}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">City<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{city}" id="city" class='form-control' data-parsley-required="true"  name="city"></div>
 							</div>
 							<div class="form-group  no-margin">
 								<label class="col-md-3 control-label">Company<i class='req'>*</i></label>
@@ -76,6 +76,10 @@
 							<div class="form-group  no-margin">
 								<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
 								<div class="col-md-9"><select class="form-control" id="id_ref_user_category" name="id_ref_user_category" data-parsley-required="true">{list_ref_user_category}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Exhibitor</label>
+								<div class="col-md-9"><select name="exhibitor_id" id="exhibitor_id" class='form-control' title="exhibitor_id">{list_exhibitor}</select></div>
 							</div>
 							<div class="form-group  no-margin">
 								<label class="col-md-3 control-label">Password</label>
