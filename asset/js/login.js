@@ -3,7 +3,6 @@ $(document).on('click','#btn_login',function(){
 		var btn = $(this);
 		btn.text('loading...')
 		btn.attr('disabled','disabled');
-		
 		$.ajax({
 			url      : base_url+'login/check_login',
 			data     : $('#form_login').serialize(),
@@ -29,6 +28,7 @@ $(document).on('click','#btn_login',function(){
 			alert('error');
 		});
 	}
+	return false;
 });
 $(document).on('click','#btn_forgot_password',function(){
 	if ($('#form_forgot_password').parsley().validate()) {
@@ -54,6 +54,7 @@ $(document).on('click','#btn_forgot_password',function(){
 			alert('error');
 		});
 	}
+	return false;
 });
 
 $(document).on('click','#btn_signup',function(){
@@ -81,4 +82,5 @@ $(document).on('click','#btn_signup',function(){
 			alert('error');
 		});
 	}
+	return false;
 });
