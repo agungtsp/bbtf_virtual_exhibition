@@ -93,3 +93,17 @@
     font-style: italic;
     color: #ff0000;
 }
+.swal-text{
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #593011;
+    font-weight: 700;
+}
+.swal-button-container{
+    display: block;
+    text-align: center;
+}
+.swal-button-container button{
+    background: #593011;
+}

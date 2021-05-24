@@ -16,17 +16,17 @@ class loginTransactionModel extends CI_Model
 		$query = $this->db->get_where($this->table,$where);
 		if($query->num_rows()!=0) {
 			$row = $query->row_array();
-			$long_session = date('Y-m-d H:i:s',strtotime('+'.LONG_SESSION.' minutes',strtotime($row['last_activity'])));
-			$now = date('Y-m-d H:i:s');
-			if($now < $long_session) {
-                return set_flash_session('error_login','Anda telah login di Komputer/Device lain.');
-			} else if($now > $long_session) {
+			// $long_session = date('Y-m-d H:i:s',strtotime('+'.LONG_SESSION.' minutes',strtotime($row['last_activity'])));
+			// $now = date('Y-m-d H:i:s');
+			// if($now < $long_session) {
+            //     return set_flash_session('error_login','Anda telah login di Komputer/Device lain.');
+			// } else if($now > $long_session) {
 				$data = array(
 					'is_active'=>2,
 					'lock_date'=>date('Y-m-d H:i:s'));
 				$this->update($user_sess['admin_id_auth_user'],$data,array('ip_address' => $_SERVER['REMOTE_ADDR']));
 				$this->insert($where);
-			}
+			// }
 		} else {
 			$this->insert($where);
 		}
