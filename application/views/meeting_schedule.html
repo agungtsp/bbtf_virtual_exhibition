@@ -65,6 +65,9 @@
     </div>
   </div>
 
+  <!-- <div class="overlay-black">
+    <a href="#" class="close-iframe"><i class="i bi-x"></i></a>
+  </div> -->
 
 <script>
     function createFrameAndJoinRoom(meeting_url) {
@@ -84,11 +87,30 @@
     }
 </script>
 <style>
-    iframe{
+    iframe {
         top: 157px !important;
         right: 0;
         left: 0;
         margin-right: auto;
         margin-left: auto;
+    }
+    .overlay-black {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        content: "";
+        background: rgba(0,0,0,.5);
+    }
+    .close-iframe {
+        color: #fff;
+        position: fixed;
+        top: 0;
+        right: 15px;
+        font-size: 42px;
+    }
+    .close-iframe:hover {
+        color: #fff;
     }
 </style>
