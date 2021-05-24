@@ -103,18 +103,25 @@
         }
     </style>
     <script defer src="https://widget-js.cometchat.io/v2/cometchatwidget.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@2.3.4/CometChat.js"></script>
     <script>
     window.addEventListener('DOMContentLoaded', (event) => {
+        const UID = '{base64_user_email}';
+        const USERNAME = '{user_full_name}';
+        const AVATAR = '{user_avatar}';
+        const appID = '33452b15fa9dfb5';
+        const appRegion = 'us';
+        const authKey = '94793f70f1691d2ab8d1509a3db20c6346ac093b';
+
         CometChatWidget.init({
-            "appID": "33452b15fa9dfb5",
-            "appRegion": "us",
-            "authKey": "94793f70f1691d2ab8d1509a3db20c6346ac093b"
+            "appID": appID,
+            "appRegion": appRegion,
+            "authKey": authKey
         }).then(response => {
-            const UID = '{base64_user_email}';
-            const USERNAME = '{user_full_name}';
             CometChatWidget.createOrUpdateUser({
                 uid: UID,
                 name: USERNAME,
+                avatar: AVATAR
             }).then((user) => {
                 CometChatWidget.login({
                     uid: UID,
@@ -129,15 +136,38 @@
                         "defaultID": 'general', //default UID (user) or GUID (group) to show,
                         "defaultType": 'group' //user or group
 				});
+                console.log(UID);
+                console.log(AVATAR);
+                var user = new CometChat.User(UID);
+                user.setAvatar(AVATAR);
+                CometChat.updateCurrentUserDetails(user).then(
+                    user => {
+                        console.log("user updated", user);
+                    }, error => {
+                        console.log("error", error);
+                    }
+                )
 			}, error => {
 				console.log("User login failed with error:", error);
 				//Check the reason for error and take appropriate action.
 			});
 		});
+        if(AVATAR){
+            var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
+            CometChat.init(appID, appSetting).then(
+                () => {
+                    console.log("Initialization completed successfully");
+                },
+                error => {
+                    console.log("Initialization failed with error:", error);
+                }
+            );
+        }
 	}, error => {
 		console.log("Initialization failed with error:", error);
 		//Check the reason for error and take appropriate action.
 	});
+
 });
 </script>
 </body>

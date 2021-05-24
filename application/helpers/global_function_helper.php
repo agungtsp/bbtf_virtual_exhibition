@@ -96,6 +96,14 @@ function render($view,$data='',$layout='main', $ret=false){
 		if($user = get_user_session()){
 			$data['user_email'] = $user['email'];
 			$data['user_full_name'] = $user['full_name'];
+			$data['user_avatar'] = '';
+			if($user['id_ref_user_category']==1){
+				$exhibitor = $CI->db->get_where('exhibitor', array('id' => $user['exhibitor_id']))->row_array();
+				if($exhibitor){
+					$data['user_avatar'] = image($exhibitor['logo'], 'large');
+				}
+			}
+			
 			$data['base64_user_email'] = str_replace("=", "", base64_encode($user['email']));
 		} else {
 			redirect(base_url()."login");
