@@ -79,3 +79,17 @@
     height: 76px;
     min-width: 150px;
 }
+.f-login .nav-tabs .nav-link{
+    min-width: 100px;
+    width: initial;
+}
+.parsley-errors-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.parsley-errors-list li {
+    font-size: 14px;
+    font-style: italic;
+    color: #ff0000;
+}

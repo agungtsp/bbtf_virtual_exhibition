@@ -119,7 +119,7 @@ function render($view,$data='',$layout='main', $ret=false){
 		  $data['page_name'] = generate_title();
 	 }
 	$data['english_view'] = LANGUAGE == 'english' ? '' : 'hidden';
-	$data['indonesia_view'] = LANGUAGE == 'indonesia' ? '' : 'hidden';
+	$data['indonesia_view'] = LANGUAGE == 'english' ? '' : 'hidden';
 	if($layout=='main' && substr_count(current_url(), "asset") <= 0 and substr_count(current_url(), "ajax") <= 0){
 		$CI->load->model('Page_hit_model');
 		$user_session = $CI->session->userdata('USER_SESS');

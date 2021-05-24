@@ -7,13 +7,13 @@
             </a>
             <a href="#" class="f-date">
             </a>
-            <a href="#" class="f-date" data-toggle="modal" data-target="#meetingSchedule">
+            <a href="#" class="f-date" data-toggle="modal" title="Meeting Schedule" data-title="tooltip" data-placement="bottom" data-target="#meetingSchedule">
                 <div>
                     <span class="month">June</span>
                     <span class="date">10</span>
                 </div>
             </a>
-            <a href="#" class="f-date" data-toggle="modal" data-target="#meetingSchedule">
+            <a href="#" class="f-date" data-toggle="modal" title="Meeting Schedule" data-title="tooltip" data-placement="bottom" data-target="#meetingSchedule">
                 <div>
                     <span class="month">June</span>
                     <span class="date">11</span>
@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{time}</td>
                                 <td>{name}</td>
-                                <td><a href="#" onclick="createFrameAndJoinRoom('{meeting_url}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                                <td><a href="#" title="Join Meeting" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
                             </tr>
                         {/list_data}
                     {/list_meeting}

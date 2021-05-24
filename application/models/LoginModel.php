@@ -1,14 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*************************************
-  * Created : Sept 27 2011
-  * Creator : ivan lubis
-  * Email : ihate.haters@yahoo.com
-  * Content : Login
-  * Project : 
-  * CMS ver : CI ver.2
-*************************************/	
-class Auth_model extends CI_Model
+class LoginModel extends CI_Model
 {
 	function __construct(){
 		parent::__construct();
@@ -16,6 +8,7 @@ class Auth_model extends CI_Model
 	function check_login($userid,$password){
 		$data['ip'] 		= $_SERVER['REMOTE_ADDR'];
 		$redir 				= 'apps/login';
+		$data_return['error'] = 1;
 		if ($userid!='' && $password!=''){
 		 $query = $this->db->get_where('auth_user',"(userid = '$userid' or email = '$userid') and is_delete=0");
 			//$this->db->where("userid","$userid");
@@ -27,82 +20,54 @@ class Auth_model extends CI_Model
 				$password = md5($password);
 				if ($password == $userpass && $password != "") {
 					$this->load->library("session");
-					if($row->id_auth_user_grup==4 || $row->id_auth_user_grup==3){
-						set_flash_session('error_login','Akun ini tidak bisa hanya bisa login melalui aplikasi Android.');
+					if($row->id_auth_user_grup==1 || $row->id_auth_user_grup==2){
+						$data_return['message'] = 'Admin can only login via CMS';
 					} else if($row->is_banned==1){
-						set_flash_session('error_login','Anda tidak memiliki izin untuk mengakses web ini.');
-						$data['activity'] = "Banned User : $userid";
+						$data_return['message'] = "Your account in review, please wait and you'll get notif by email";
+						$data['activity'] = "Account in review";
 					} else {
-						$user_sess = array();
 						$user_sess = array(
-													'admin_name'=>$row->full_name,
-													'admin_id_auth_user_group'=>$row->id_auth_user_grup,
-													'id'=>$row->id_auth_user,
-													'admin_id_auth_user'=>$row->id_auth_user,
-													'admin_id_ref'=>$row->id_ref,
-													'admin_type'=>$row->tipe,
-													'profil_mitra_id'=>$row->profil_mitra_id,
-													'admin_id_ref_user_category'=>$row->id_ref_user_category
-													);
+							'name'=>$row->full_name,
+							'id_auth_user_group'=>$row->id_auth_user_grup,
+							'id'=>$row->id_auth_user,
+							'id_auth_user'=>$row->id_auth_user,
+							'id_ref'=>$row->id_ref,
+							'type'=>$row->tipe,
+							'id_ref_user_category'=>$row->id_ref_user_category
+						);
 						$this->load->model('LoginTransactionModel');
 						$this->LoginTransactionModel->check_user($user_sess);
-						$this->session->set_userdata('ADM_SESS',$user_sess);
-						$this->session->unset_userdata('MEM_SESS');
+						$this->session->set_userdata('MEM_SESS',$user_sess);
+						$data_return['message'] = 'Login Success';
 						$data['activity'] 		= "Login";
-						if($row->id_auth_user_grup==1){
-							$redir ='apps/home';
-						} else {
-							$redir ='apps/home';
-						}
+						$data['error'] = 0;
 					}
 				}
 				else {
-          set_flash_session('error_login','Incorrect password');
+          			$data_return['message'] = 'The email address or password is incorrect. Please retry';
 					$data['activity'] = "Incorrect password";
 				}
 			} 
 			else {
-			   set_flash_session('error_login','Username atau password yang anda masukkan salah');
+			   $data_return['message'] = 'Email or password incorrect';
 			   $data['activity'] = "User not found : $userid";
 			}
 		}
 		else{
 			//kalo userid or password or dua2nya kosong
-			set_flash_session('error_login','Username and Password is Required');
+			$data_return['message'] = 'Email and Password is Required';
 			redirect('apps/login');
 			exit;
 		}
 		$data['log_date'] =  date('Y-m-d H:i:s');
 		$this->db->insert('access_log',$data);
-		redirect($redir);
-	}
-	function auth_pages($where,$total='',$sidx='',$sord='',$mulai='',$end=''){
-	  $mulai = $mulai--;
-	  if ($total==1){
-		  $sql	= "SELECT count(*) ttl from auth_user_grup ";//where 1 $where";
-		  $data	= $this->db->query($sql)->row()->ttl;
-	  }
-	  else{
-		  $sql	= "SELECT id_auth_user_grup id, grup from auth_user_grup ";//where 1
-						 // $where order by $sidx $sord limit $mulai,$end ";
-		  $dt	= $this->db->query($sql)->result_array();
-		  $n 	= 0;
-		  foreach($dt as $dtx){
-			  $data[$n]['id'] 				= $dtx['id'];
-			  $data[$n]['edit'] 			=  edit_grid($dtx['id']);
-			  $data[$n]['del'] 				= ($dtx['id'] <= 10) ? '' : delete_grid($dtx['id']);
-			  $data[$n]['grup'] 			= $dtx['grup'];
-			  $data[$n]['total'] 			= $this->db->get_where('auth_user',array('id_auth_user_grup'=>$dtx['id']))->num_rows();
-			  ++$n;
-		  }
-	  }
-	  return $data;
+		return $data_return;
 	}
 
 	function send_password($email){
         // $data['ip']         = $_SERVER['REMOTE_ADDR'];
         $query = $this->db->get_where('auth_user',"email = '$email'  and is_delete=0");
-
+		$data_return['error'] = 1;
         if ($query->num_rows() > 0){
             $row = $query->row(); 
 
@@ -130,15 +95,15 @@ class Auth_model extends CI_Model
             $mail['content'] = $emailContent;
 
             sent_mail($mail);
-            $this->session->set_flashdata('warning','Password baru telah dikirim ke alamat email Anda');
-            redirect('apps/login/forget_password');
+			$data_return['error'] = 0;
+			$data_return['message'] = 'A new password has been sent to your e-mail address';
         }else{
-            $this->session->set_flashdata('error_login','Email yang Anda masukkan salah');
+            $data_return['message'] = 'The email you entered is incorrect';
             $data['activity'] = "change password not found email : $email";
             $data['log_date'] =  date('Y-m-d H:i:s');
             $this->db->insert('access_log',$data);
-            redirect('apps/login/forget_password');
         }
+		return $data_return;
 	}
 	function getEmailTemplate($idEmail='')
 	{
