@@ -112,7 +112,9 @@
         const appID = '33452b15fa9dfb5';
         const appRegion = 'us';
         const authKey = '94793f70f1691d2ab8d1509a3db20c6346ac093b';
-
+        
+        var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
+        CometChat.init(appID, appSetting).then();
         CometChatWidget.init({
             "appID": appID,
             "appRegion": appRegion,
@@ -137,25 +139,15 @@
                         "defaultType": 'group' //user or group
 				});
                 if(AVATAR){
-                    var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
-                    CometChat.init(appID, appSetting).then(
-                        () => {
-                            console.log("Initialization completed successfully");
-                        },
-                        error => {
-                            console.log("Initialization failed with error:", error);
-                        }
-                    );
+                    var user = new CometChat.User(UID);
+                    user.setAvatar(AVATAR);
+                    CometChat.updateCurrentUserDetails(user).then();
                 }
 			}, error => {
-				console.log("User login failed with error:", error);
-				//Check the reason for error and take appropriate action.
 			});
 		});
-        
+
 	}, error => {
-		console.log("Initialization failed with error:", error);
-		//Check the reason for error and take appropriate action.
 	});
 
 });
