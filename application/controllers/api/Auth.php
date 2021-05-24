@@ -42,7 +42,7 @@ class Auth extends REST_Controller {
                 $this->load->model('model_user','model');
                 $emailTmp = $this->getEmailTemplate(5);
                 
-                $dataEmailContent['fullname'] = $post['full_name'];
+                $dataEmailContent['full_name'] = $post['full_name'];
                 $emailContent = $this->parser->parse_string($emailTmp['page_content'], $dataEmailContent, TRUE);
 
                 $mail['to'] = $post['email'];

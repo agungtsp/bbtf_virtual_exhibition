@@ -228,9 +228,9 @@ function load_js($file,$path='asset/js'){
     $files = explode(',',$file);
     foreach($files as $fl){
         if(substr_count($fl, ".min.") == 0){
-            if(IS_MINIFY==1){
-                $fl = str_replace(".js", ".min.js", $fl);
-            } 
+            // if(IS_MINIFY==1){
+            //     $fl = str_replace(".js", ".min.js", $fl);
+            // } 
         }
         if($fl)
             $js .= '<script type="text/javascript" src="'.base_url().$path."/".$fl."?ver=".ASSET_VERSION.'"></script>'."\n";
@@ -248,9 +248,9 @@ function load_css($file,$path='asset/css'){
     $files = explode(',',$file);
     foreach($files as $fl){
         if(substr_count($fl, ".min.") == 0){
-            if(IS_MINIFY==1){
-                $fl = str_replace(".css", ".min.css", $fl);
-            } 
+            // if(IS_MINIFY==1){
+            //     $fl = str_replace(".css", ".min.css", $fl);
+            // } 
         }
         if($fl)
             $js .= '<link rel="stylesheet" type="text/css" href="'.base_url().$path."/".$fl."?ver=".ASSET_VERSION.'">'."\n";
