@@ -33,4 +33,5 @@ $(document).ready(function(){
             }
         }
     });
+    $('[data-title="tooltip"]').tooltip();
 });
