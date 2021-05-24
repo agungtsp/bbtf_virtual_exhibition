@@ -136,33 +136,23 @@
                         "defaultID": 'general', //default UID (user) or GUID (group) to show,
                         "defaultType": 'group' //user or group
 				});
-                console.log(UID);
-                console.log(AVATAR);
-                var user = new CometChat.User(UID);
-                user.setAvatar(AVATAR);
-                CometChat.updateCurrentUserDetails(user).then(
-                    user => {
-                        console.log("user updated", user);
-                    }, error => {
-                        console.log("error", error);
-                    }
-                )
+                if(AVATAR){
+                    var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
+                    CometChat.init(appID, appSetting).then(
+                        () => {
+                            console.log("Initialization completed successfully");
+                        },
+                        error => {
+                            console.log("Initialization failed with error:", error);
+                        }
+                    );
+                }
 			}, error => {
 				console.log("User login failed with error:", error);
 				//Check the reason for error and take appropriate action.
 			});
 		});
-        if(AVATAR){
-            var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
-            CometChat.init(appID, appSetting).then(
-                () => {
-                    console.log("Initialization completed successfully");
-                },
-                error => {
-                    console.log("Initialization failed with error:", error);
-                }
-            );
-        }
+        
 	}, error => {
 		console.log("Initialization failed with error:", error);
 		//Check the reason for error and take appropriate action.
