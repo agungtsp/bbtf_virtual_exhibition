@@ -93,7 +93,11 @@ function render($view,$data='',$layout='main', $ret=false){
 		$data['is_enable_export_excel'] = (group_id() == 1 or group_id() == 4 or group_id() == 5) ? '' : 'invis';
 	 }
 	 if($layout=='main'){
-		if(!get_user_session()){
+		if($user = get_user_session()){
+			$data['user_email'] = $user['email'];
+			$data['user_full_name'] = $user['full_name'];
+			$data['base64_user_email'] = str_replace("=", "", base64_encode($user['email']));
+		} else {
 			redirect(base_url()."login");
 		}
 	 }
