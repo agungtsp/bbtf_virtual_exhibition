@@ -58,5 +58,6 @@ $route['exhibition/(:any)']        = 'exhibition/index/$1';
 $route['exhibitor/(:any)/(:any)'] = 'exhibitor/detail/$1/$2';
 $route['exhibitor']           = 'exhibitor';
 $route['meeting-schedule']         = 'meeting_schedule/index';
+$route['meeting-room']         = 'meeting_schedule/index';
 $route['meeting-schedule/list']    = 'meeting_schedule/list_data';
 // end frontend

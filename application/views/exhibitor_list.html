@@ -1,13 +1,15 @@
 <section class="section-home container">
     <div class="exhibition-area">
-        <div class="table-exhibition">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    {list_exhibitor}
-                        <td><a href="{base_url}exhibitor/{category_url}/{uri_path}"><img src="{logo_url}" alt="{name}"></a></td>
-                    {/list_exhibitor}
-                </tr>
-            </table>
+        <div class="list-exhibition">
+            <div class="row">
+                {list_exhibitor}
+                    <div class="col-12">
+                        <div class="item-exhibition">
+                            <a href="{base_url}exhibitor/{category_url}/{uri_path}"><img src="{logo_url}" alt="{name}"></a>
+                        </div>
+                    </div>
+                {/list_exhibitor}
+            </div>
         </div>
         <div class="logo-right">
             <img src="{logo_category_url}">
