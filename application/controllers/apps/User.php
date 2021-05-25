@@ -90,8 +90,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('email', '"Email"', 'required'); 
 		$this->form_validation->set_rules('phone', '"Phone"', 'required'); 
 		$this->form_validation->set_rules('id_auth_user_grup', '"User Group"', 'required'); 
-		$this->form_validation->set_rules('gender', '"Jenis Kelamin"', 'trim|required');
-		$this->form_validation->set_rules('birthdate', '"Tanggal Lahir"', 'trim|required');
+		// $this->form_validation->set_rules('gender', '"Jenis Kelamin"', 'trim|required');
+		// $this->form_validation->set_rules('birthdate', '"Tanggal Lahir"', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE){
 			$ret['message']  = validation_errors(' ',' ');

@@ -51,7 +51,7 @@ function get_upload_multifile($id, $data, $json_encode = 1){
     $data_file = explode(',', $data);
     if($data_file){
         foreach($data_file as $key => $value){
-            if($value){
+            if($value && @filesize(UPLOAD_FILE_DIR.$id.'/'.$value)){
                 $data_upload[] = array(
                     'name' => $value,
                     'size' => filesize(UPLOAD_FILE_DIR.$id.'/'.$value),

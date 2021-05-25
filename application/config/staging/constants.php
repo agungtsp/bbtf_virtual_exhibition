@@ -93,7 +93,7 @@ define('EMAIL_TEMPLATE_DIR',	dirname(__FILE__)."/../../../application/views/layo
 define('PAGING_PERPAGE',	16);
 define('PAGING_PERPAGE_LOG',	6);
 define('LANGUAGE','indonesia');
-define('IS_HTTPS', FALSE); //TRUE OR FALSE
+define('IS_HTTPS', TRUE); //TRUE OR FALSE
 define('MAX_UPLOAD_SIZE', 5242880); //5Mb 5*1024*1024
 
 define('IS_DEVELOPMENT', 1);

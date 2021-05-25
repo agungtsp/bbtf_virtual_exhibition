@@ -47,11 +47,11 @@ class Exhibitor extends CI_Controller {
 			$data['meta_keywords']     = '';
 			$data['description']      = '';
 			// $data['publish_date']     = date('d-m-Y');
-			$data['company_profile']      = '';
-			$data['form_exhibitor']      = '';
-			$data['poster_product']      = '';
-			$data['video_product']      = '';
-			$data['brochure_product']      = '';
+			$data['company_profile']      = [];
+			$data['form_exhibitor']      = [];
+			$data['poster_product']      = [];
+			$data['video_product']      = [];
+			$data['brochure_product']      = [];
 		}
 
 		
@@ -79,7 +79,8 @@ class Exhibitor extends CI_Controller {
 	function records(){
 		$data = $this->Exhibitor_model->records();
 		foreach ($data['data'] as $key => $value) {
-			// $data['data'][$key]['publish_date'] = iso_date($value['publish_date']);
+			$data['data'][$key]['link_preview'] = base_url('exhibitor/'.strtolower($value['category_name']).'/'.$value['uri_path']);
+			$data['data'][$key]['show_link_preview'] = ($value['id_status_publish']==1) ? "hidden" : "";
 		}
 		render('apps/exhibitor/records',$data,'blank');
 	}	
@@ -119,10 +120,10 @@ class Exhibitor extends CI_Controller {
 		$ret['error'] = 1;
 		if ($this->form_validation->run() == FALSE){
 			$ret['message']  = validation_errors(' ',' ');
-		}else if(!isset($upload['file_name']) && empty($upload['file_name'])){
-			$ret['message']  = $upload;
-		}else if(!isset($booth_design['file_name']) && empty($booth_design['file_name'])){
-			$ret['message']  = $booth_design;
+		// }else if(!isset($upload['file_name']) && empty($upload['file_name'])){
+			// $ret['message']  = $upload;
+		// }else if(!isset($booth_design['file_name']) && empty($booth_design['file_name'])){
+			// $ret['message']  = $booth_design;
 		}else if($unik){
 			$ret['message']	= "Page URL $post[uri_path] already taken";
 		}
@@ -135,10 +136,13 @@ class Exhibitor extends CI_Controller {
 				$post['jfiler-items-exclude-video_product-0'],
 				$post['jfiler-items-exclude-brochure_product-0'],
 			$post['company_profile'], $post['form_exhibitor'], $post['poster_product'], $post['video_product'], $post['brochure_product']);
-
 			// $post['publish_date'] = iso_date($post['publish_date']);
-			$post['logo'] = $upload['file_name'];
-			$post['booth_design'] = $booth_design['file_name'];
+			if(isset($upload['file_name'])){
+				$post['logo'] = $upload['file_name'];
+			}
+			if(isset($booth_design['file_name'])){
+				$post['booth_design'] = $booth_design['file_name'];
+			}
 			if($idedit){
 				auth_update();
 				$ret['message'] = 'Update Success';

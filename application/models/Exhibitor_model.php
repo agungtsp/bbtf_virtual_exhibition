@@ -10,7 +10,8 @@ class Exhibitor_model extends  CI_Model{
 		$alias['search_title'] 			= 'a.title';
 		$alias['search_name'] 			= 'a.name';
 		$alias['search_status_publish'] = 'a.id_status_publish';
-
+		$alias['search_ref_exhibitor_category'] = 'a.id_exhibitor_category';
+		
 	 	query_grid($alias,$isTotal);
 		$this->db->select("a.*,d.name as status_publish, e.name as category_name");
 		$this->db->join('status_publish d','d.id = a.id_status_publish');
