@@ -1,6 +1,6 @@
 body {
 	font-family: 'Roboto', sans-serif;
-	padding: 15px 50px;
+	padding: 15px;
 	padding-top: 0;
 	min-height: 100vh;
 }
@@ -355,6 +355,9 @@ header.container {
 .owl-logo img:hover {
 	transform: scale(0.9);
 }
+.owl-logo .item a {
+	display: block;
+}
 .owl-logo .owl-nav button {
 	height: 47px;
     position: absolute;
@@ -704,6 +707,9 @@ header.container {
 	padding: 5px;
 	width: 145px;
 }
+.lc-left a {
+	display: block;
+}
 .lc-left .thumbnail {
 	height: 100px;
 	width: 100%;
@@ -997,4 +1003,69 @@ header.container {
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+.list-date-white {
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+}
+.list-date-white .f-date {
+    width: 50%;
+    height: 160px;
+    border: 1px solid #835224;
+    display: flex;
+    padding: 0;
+}
+.list-date-white .f-date:first-child {
+    margin-right: 3px;
+}
+.list-date-white .f-date:last-child {
+    margin-left: 3px;
+}
+.list-date-white .f-date img {
+	height: 100%;
+	opacity: .2;
+}
+.list-date-white .f-date .img-left,
+.list-date-white .f-date .img-right {
+	width: 380px;
+}
+.list-date-white .f-date .desc {
+	min-width: 185px;
+	width: 185px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list-date-white .f-date .desc div {
+    position: relative;
+    background: url(../img/bg-date-white.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 101px;
+    transform: ease all .3s;
+}
+.list-date-white .f-date div span.month {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 22px;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.list-date-white .f-date div span.date {
+    color: #835224;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40px;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    line-height: normal;
 }

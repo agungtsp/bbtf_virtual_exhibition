@@ -108,7 +108,7 @@ class Exhibitor extends CI_Controller {
 		} else if($_FILES['booth_design']) {
 			$booth_design = upload_file('booth_design','large','jpg|png|jpeg',$max_size,UPLOAD_DIR,date('YmdHis'));
 		} else {
-			$booth_design = 'Logo is required!';
+			$booth_design = 'Booth is required!';
 		}
 
 		$where['a.uri_path']		= $post['uri_path'];
