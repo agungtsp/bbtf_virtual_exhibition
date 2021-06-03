@@ -94,6 +94,7 @@
   </div> -->
 
 <script>
+    // var call_update_username = 0;
     function createFrameAndJoinRoom(meeting_url) {
         $('#meetingSchedule').modal('hide');
         window.callFrame = window.DailyIframe.createFrame({
@@ -105,9 +106,29 @@
                 border: '1px solid black',
                 width: '800px',
                 height: '500px',
-            }
+            },
+            userName: "{user_full_name}"
         });
         callFrame.join({ url: meeting_url});
+        var interval = setInterval(function() { 
+            callFrame.setUserName("{user_full_name}");
+        }, 3000);
+        callFrame.on('loaded', function(event){
+            $('body').prepend('<div class="overlay-black"> \
+                <a href="#" class="close-iframe"><i class="i bi-x"></i></a> \
+            </div>');
+        });
+        callFrame.on('joined-meeting', function(event){
+            clearInterval(interval);
+        });
+        $(document).on("click",".close-iframe",function() {
+            $('.overlay-black').remove();
+            $('iframe[allow="microphone; camera; autoplay; display-capture"]').remove();
+            clearInterval(interval);
+        });
+        callFrame.on('left-meeting', function(event){
+            $('.close-iframe').click();
+        });
     }
 </script>
 <style>
@@ -117,6 +138,7 @@
         left: 0;
         margin-right: auto;
         margin-left: auto;
+        z-index: 9;
     }
     .overlay-black {
         position: fixed;
@@ -125,14 +147,18 @@
         top: 0;
         bottom: 0;
         content: "";
-        background: rgba(0,0,0,.5);
+        background: rgba(0,0,0,.8);
+        z-index: 1;
     }
     .close-iframe {
         color: #fff;
         position: fixed;
         top: 0;
         right: 15px;
-        font-size: 42px;
+        font-size: 50px;
+        border: 1px solid #ffff;
+        line-height: 0;
+        top: 16px;
     }
     .close-iframe:hover {
         color: #fff;

@@ -47,7 +47,7 @@
   <header class="container">
       <div class="top-header">
           <a href="{base_url}" class="logo">
-              <img src="{base_url}/asset/img/logo.jpg" alt="">
+              <img src="{base_url}asset/img/logo.jpg" alt="">
           </a>
           <div class="socmed">
               <a href="https://www.facebook.com/BaliBeyondTravelFair/" target="_BLANK"><i class="bi bi-facebook"></i></a>
@@ -81,10 +81,12 @@
                   <li class="nav-item {active_meeting_schedule}">
                       <a class="nav-link" href="{base_url}meeting-room">Meeting Room</a>
                   </li>
-                    <li class="nav-item {show_logout} pull-right">
-                        <a class="nav-link" href="{base_url}login/logout">Logout</a>
-                    </li>
               </ul>
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item {show_logout}">
+                      <a class="nav-link" href="{base_url}login/logout">Logout</a>
+                  </li>
+                </ul>
           </div>
       </nav>
   </header>
@@ -99,7 +101,7 @@
   {js_file}
 
     <style>
-        .launcher__wrapper{
+        .app__launcher{
             color: #fef7ed;
             background: #593011;
             /* font-size: 20px; */
@@ -110,57 +112,23 @@
             cursor: pointer;
             transition: ease all .2s;
         }
+        .app__launcher{
+            margin-bottom: 15px;
+        }
     </style>
-    <script defer src="https://widget-js.cometchat.io/v2/cometchatwidget.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@2.3.4/CometChat.js"></script>
+    <script defer src="https://widget-js.cometchat.io/v3/cometchatwidget.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@3.0.0-beta5/CometChat.js"></script>
     <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
+        const GUID = '{base64_guid}';
+        const GROUP_NAME = '{group_name}';
         const UID = '{base64_user_email}';
         const USERNAME = '{user_full_name}';
         const AVATAR = '{user_avatar}';
-        const appID = '33452b15fa9dfb5';
+        const appID = '{cometchat_appid}';
         const appRegion = 'us';
-        const authKey = '94793f70f1691d2ab8d1509a3db20c6346ac093b';
-        
-        var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
-        CometChat.init(appID, appSetting).then();
-        CometChatWidget.init({
-            "appID": appID,
-            "appRegion": appRegion,
-            "authKey": authKey
-        }).then(response => {
-            CometChatWidget.createOrUpdateUser({
-                uid: UID,
-                name: USERNAME,
-                avatar: AVATAR
-            }).then((user) => {
-                CometChatWidget.login({
-                    uid: UID,
-                }).then((loggedInUser) => {
-                    CometChatWidget.launch({
-                        "widgetID": "f32d4159-2271-495f-bdf4-78253d7440b9",
-                        "docked": "true",
-                        "alignment": "right", //left or right
-                        "roundedCorners": "true",
-                        "height": "450px",
-                        "width": "400px",
-                        "defaultID": 'general', //default UID (user) or GUID (group) to show,
-                        "defaultType": 'group' //user or group
-				});
-                if(AVATAR){
-                    var user = new CometChat.User(UID);
-                    user.setAvatar(AVATAR);
-                    CometChat.updateCurrentUserDetails(user).then();
-                }
-			}, error => {
-			});
-		});
-
-	}, error => {
-	});
-
-});
-</script>
+        const authKey = '{comethat_authKey}';
+    </script>
+    <script type="text/javascript" src="{cometchat-js}"></script>
 </body>
 
 </html>

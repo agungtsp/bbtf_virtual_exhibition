@@ -121,6 +121,16 @@ function render($view,$data='',$layout='main', $ret=false){
 	 if($CI->uri->segment(2)){
 	 	$data['product_category'] = $CI->uri->segment(2);
 	 }
+	//  print_r($CI->uri->segment(1));exit();
+	$data['guid'] = '';
+	$data['group_name'] = '';
+	if($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) && $CI->uri->segment(3)){
+		$data['base64_guid'] = strtolower(preg_replace('/[0-9]+/', '', base64_encode($data['name'].'_'.$file)));
+		$data['group_name'] = $data['name'];
+		$data['cometchat-js'] = base_url('asset/js/cometchat-group.js');
+	} else {
+		$data['cometchat-js'] = base_url('asset/js/cometchat-public.js');
+	}
 	 $data['show_logout'] = (get_user_session()) ? "" : "hidden";
 	 $data['app_name'] = APP_NAME;
 	 $data['language']		=  LANGUAGE;
@@ -136,6 +146,8 @@ function render($view,$data='',$layout='main', $ret=false){
 	 if(!$data['page_name']){
 		  $data['page_name'] = generate_title();
 	 }
+	$data['cometchat_appid'] = COMETCHAT_APPID;
+	$data['comethat_authKey'] = COMETCHAT_AUTHKEY;
 	$data['english_view'] = LANGUAGE == 'english' ? '' : 'hidden';
 	$data['indonesia_view'] = LANGUAGE == 'english' ? '' : 'hidden';
 	if($layout=='main' && substr_count(current_url(), "asset") <= 0 and substr_count(current_url(), "ajax") <= 0){
