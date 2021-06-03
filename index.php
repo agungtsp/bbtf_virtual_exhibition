@@ -56,6 +56,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 switch ($_SERVER['HTTP_HOST']) {
+    case 'bbtf.omnitech.id':
+    case 'bbtf.virconex-id.com':
     case '203.77.239.228':
         define('ENVIRONMENT', 'staging');
         break;
