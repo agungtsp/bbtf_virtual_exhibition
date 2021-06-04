@@ -75,7 +75,8 @@
                             <tr>
                                 <td>{time}</td>
                                 <td>{name}</td>
-                                <td><a href="#" title="Join Meeting" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                                <td><a href="#" title="Join Meeting" data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}', '{start_date_original} {end_time}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                                <!-- <td><a href="#" title="Join Meeting" data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}', '2021-06-04 09:37');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td> -->
                             </tr>
                         {/list_data}
                     {/list_meeting}
@@ -95,7 +96,7 @@
 
 <script>
     // var call_update_username = 0;
-    function createFrameAndJoinRoom(meeting_url) {
+    function createFrameAndJoinRoom(meeting_url, schedule_time) {
         $('#meetingSchedule').modal('hide');
         window.callFrame = window.DailyIframe.createFrame({
             showFullscreenButton: true,
@@ -113,6 +114,7 @@
         var interval = setInterval(function() { 
             callFrame.setUserName("{user_full_name}");
         }, 3000);
+
         callFrame.on('loaded', function(event){
             $('body').prepend('<div class="overlay-black"> \
                 <a href="#" class="close-iframe"><i class="i bi-x"></i></a> \
@@ -125,7 +127,29 @@
             $('.overlay-black').remove();
             $('iframe[allow="microphone; camera; autoplay; display-capture"]').remove();
             clearInterval(interval);
+            clearInterval(check_schedule);
+            swal({
+					text: "Thank You For Your Participation",
+					type: "success",
+					icon: "success"
+            }).then(function() {
+            });
         });
+        var check_schedule = setInterval(function() { 
+            var now = moment().zone('+0700').format('YYYY-MM-DD HH:mm');
+            var ms = moment(now,"YYYY-MM-DD HH:mm").diff(moment(schedule_time,"YYYY-MM-DD HH:mm"));
+            if(ms > 0){
+                swal({
+					text: "Meeting End \n Thank You For Your Participation",
+                    type: "success",
+                    icon: "success"
+                }).then(function() {
+                    $('.close-iframe').click();
+                    // clearInterval(check_schedule);
+                });
+            } else {
+            }
+        }, 3000);
         callFrame.on('left-meeting', function(event){
             $('.close-iframe').click();
         });

@@ -28,7 +28,10 @@ class Meeting_schedule extends CI_Controller {
 				}
 				$list_meeting[$value['start_date']]['list_data'][] = array(
 					"name" => $value['name'],
+					'start_date_original' => $value['start_date'],
 					"room_name" => $value['room_name'],
+					"start_time" => $value['start_time'],
+					"end_time" => $value['end_time'],
 					"meeting_url" => $value['meeting_url'],
 					"time" => ($value['start_time'] && $value['end_time']) ? $value['start_time'] . " - ". $value['end_time'] : "All Day",
 				);
