@@ -21,8 +21,8 @@ class Exhibitor extends CI_Controller {
 		$data['active_exhibitor'] = "active";
 		if($data){
 			$data['page_name']         = $data['name'];
-			$data['logo_url'] = image($data['logo'],'large');
-			$data['booth_design_url'] = image($data['booth_design'],'large');
+			$data['logo_url'] = image($data['logo'],'small');
+			$data['booth_design_url'] = image($data['booth_design'],'small');
 			$data['list_company_profile'] = get_upload_multifile($data['id'], $data['company_profile'], 0);
 			$data['list_company_profile2'] = $data['list_company_profile'];
 			$data['list_form_exhibitor'] = get_upload_multifile($data['id'], $data['form_exhibitor'], 0);
@@ -40,12 +40,17 @@ class Exhibitor extends CI_Controller {
 
 	function compress_image($date){
 		$this->layout 			= 'none';
-		$data = $this->Exhibitor_model->findBy(array("date_create >=" => $date));
 		$this->load->library('tinypng', array('api_key' => 'HIWczeQdPd4wNly-w-IL3HJjoCUY1-bD'));
+		$data = $this->Exhibitor_model->findBy(array("date_create >=" => $date));
 		foreach($data as $data_key => $data_value){
-			$this->tinypng->fileCompress(path_image($data['logo'],'large'), path_image($data['logo'],'small'));
-			// $data['logo_url'] = image($data['logo'],'large');
-			// $data['booth_design_url'] = image($data['booth_design'],'large');
+			// $this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['logo'], UPLOAD_DIR.'small/'.$data_value['logo']);
+			// $this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['booth_design'], UPLOAD_DIR.'small/'.$data_value['booth_design']);
+			$list_poster_product = get_upload_multifile($data_value['id'], $data_value['poster_product'], 0);
+			foreach($list_poster_product as $poster_key => $poster_value){
+				$ext = strtolower(end(explode('.',$poster_value['name'])));
+				$fname = str_replace(".".$ext, '', $poster_value['name']);
+				$this->tinypng->fileCompress(UPLOAD_DIR.'uploads/'.$data_value['id'].'/'. $poster_value['name'], UPLOAD_DIR.'uploads/'.$data_value['id'].'/'.$fname.'-min.'.$ext);
+			}
 		}
 		exit();
 	}

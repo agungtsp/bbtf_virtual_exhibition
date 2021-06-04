@@ -1131,7 +1131,7 @@ function image($img,$path,$ret=0){
 		$data = $cek;
 	}
 	else{
-		$data =  $cek ? (base_url().'images/article/'.$path.$img) : $no_img;
+		$data =  $cek ? (base_url().'images/article/'.$path.$img) : (base_url().'images/article/large/'.$img);
 	}
     return $data;
 

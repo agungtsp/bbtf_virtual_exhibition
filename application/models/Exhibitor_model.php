@@ -92,8 +92,8 @@ class Exhibitor_model extends  CI_Model{
 		else{
 			$list_data = $this->db->get_where($this->tableAs,$where)->result_array();
 			foreach($list_data as $key => $value){
-				$list_data[$key]['logo_url'] = image($value['logo'],'large');
-				$list_data[$key]['booth_design_url'] = image($value['booth_design'],'large');
+				$list_data[$key]['logo_url'] = image($value['logo'],'small');
+				$list_data[$key]['booth_design_url'] = image($value['booth_design'],'small');
 			}
 			return $list_data;
 		}
