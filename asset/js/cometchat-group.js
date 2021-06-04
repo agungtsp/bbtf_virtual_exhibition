@@ -22,19 +22,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 var group = new CometChat.Group(GUID, groupName, groupType, password);
 
-                CometChat.createGroup(group).then();
-                group.setIcon(group_logo_url);
-                CometChat.updateGroup(group).then();
-                let usersRequest = new CometChat.UsersRequestBuilder().setLimit(0).build();
-                let membersList = [
-                  new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
-                  new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
-                ];
-                CometChat.addMembersToGroup(GUID, membersList, []).then(
+                CometChat.createGroup(group).then(
                     () => {
-                        CometChat.transferGroupOwnership(GUID, "admin").then(
+                        group.setIcon(group_logo_url);
+                        CometChat.updateGroup(group).then(
                             () => {
-                                CometChat.leaveGroup(GUID).then();
+                                let membersList = [
+                                    new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                                    new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                                ];
+                                CometChat.addMembersToGroup(GUID, membersList, []).then(
+                                    () => {
+                                        CometChat.transferGroupOwnership(GUID, "admin").then(
+                                            () => {
+                                                CometChat.leaveGroup(GUID).then();
+                                            }
+                                        );
+                                    }
+                                );
                             }
                         );
                     }
