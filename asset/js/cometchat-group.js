@@ -73,11 +73,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             ];
                             CometChat.addMembersToGroup(GUID, membersList, []).then(
                                 () => {
-                                    // CometChat.transferGroupOwnership(GUID, "admin").then(
-                                    //     () => {
-                                    //         CometChat.leaveGroup(GUID).then();
-                                    //     }
-                                    // );
+                                    CometChat.transferGroupOwnership(GUID, "admin").then(
+                                        () => {
+                                            CometChat.leaveGroup(GUID).then();
+                                        }
+                                    );
                                 }
                             );
                         }
