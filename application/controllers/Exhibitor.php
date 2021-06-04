@@ -4,6 +4,7 @@ class Exhibitor extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Ref_exhibitor_category_model');
 		$this->load->model('Exhibitor_model');
+		$this->load->model('Member_model');
 	}
 	function index(){
 		$data['active_exhibitor'] = "active";
@@ -19,6 +20,7 @@ class Exhibitor extends CI_Controller {
 	function detail($category, $url){
 		$data = $this->Exhibitor_model->findBy(array('a.uri_path'=>$url), 1);
 		$data['active_exhibitor'] = "active";
+		$member = $this->Member_model->findBy(array('a.exhibitor_id'=>$data['id']), 1);
 		if($data){
 			$data['page_name']         = $data['name'];
 			$data['logo_url'] = image($data['logo'],'small');
@@ -30,6 +32,9 @@ class Exhibitor extends CI_Controller {
 			$data['list_video_product'] = get_upload_multifile($data['id'], $data['video_product'], 0);
 			$data['list_brochure_product'] = get_upload_multifile($data['id'], $data['brochure_product'], 0);
 			$data['list_brochure_product2'] = $data['list_brochure_product'];
+			$data['admin_name'] = $member['full_name'];
+			// echo "<pre>";
+			// print_r($data);exit();
 
 			$this->Exhibitor_model->update(array('page_hit' => (int)$data['page_hit']+=1), $data['id']);
 			render('exhibitor_detail_'.$category,$data);

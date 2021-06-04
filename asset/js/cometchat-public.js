@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let membersList = [
                     new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT)
                 ];
+                var general = GENERAL;
                 CometChat.addMembersToGroup('general', membersList, []).then();
                 CometChatWidget.launch({
                     "widgetID": "93767f54-5a9c-4c07-978a-044cd584ce8a",
@@ -25,7 +26,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     "roundedCorners": "true",
                     "height": "450px",
                     "width": "400px",
-                    "defaultID": 'general', //default UID (user) or GUID (group) to show,
+                    "defaultID": general, //default UID (user) or GUID (group) to show,
                     "defaultType": 'group' //user or group
             });
             if(AVATAR){

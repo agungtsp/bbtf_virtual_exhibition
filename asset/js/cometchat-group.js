@@ -63,30 +63,54 @@ function show_widget_chat(){
             CometChatWidget.login({
                 uid: UID,
             }).then((loggedInUser) => {
+                var adminName = ADMIN_NAME;
+                console.log(adminName)
+                var limit = 100;
+                var usersRequest = new CometChat.UsersRequestBuilder().setLimit(limit).build();
 
-                CometChatWidget.launch({
-                    "widgetID": "590bc393-f078-494a-8ee8-c777b33978f3",
-                    "docked": "true",
-                    "alignment": "right", //left or right
-                    "roundedCorners": "true",
-                    "height": "450px",
-                    "width": "400px",
-                    "defaultID": GUID, //default UID (user) or GUID (group) to show,
-                    "defaultType": 'group' //user or group
-                });
-                if(AVATAR){
-                    var user = new CometChat.User(UID);
-    
-                    user.setAvatar(AVATAR);
-                    CometChat.updateCurrentUserDetails(user).then(
-                        // user => {
-                        //     console.log("user updated", user);
-                        // }, error => {
-                        //     console.log("error", error);
-                        // }
-                    )
-                }
-                
+                usersRequest.fetchNext().then(
+                userList => {
+                    /* userList will be the list of User class. */
+                    console.log("User list received:", userList);
+                    if (adminName) {
+                        var adminID = userList.find(x => x.name === adminName);
+                        if (adminID === undefined) {
+                            adminID = 'admin';
+                        } else {
+                            adminID = adminID.uid;
+                        }
+                    } else {
+                        var adminID = 'admin';
+                    }
+                    /* retrived list can be used to display contact list. */
+                  
+                    CometChatWidget.launch({
+                        "widgetID": "590bc393-f078-494a-8ee8-c777b33978f3",
+                        "docked": "true",
+                        "alignment": "right", //left or right
+                        "roundedCorners": "true",
+                        "height": "450px",
+                        "width": "400px",
+                        "defaultID": adminID, //default UID (user) or GUID (group) to show,
+                        "defaultType": 'user' //user or group
+                    });
+                    if(AVATAR){
+                        var user = new CometChat.User(UID);
+        
+                        user.setAvatar(AVATAR);
+                        CometChat.updateCurrentUserDetails(user).then(
+                            // user => {
+                            //     console.log("user updated", user);
+                            // }, error => {
+                            //     console.log("error", error);
+                            // }
+                        )
+                    }
+                },
+                  error => {
+                    console.log("User list fetching failed with error:", error);
+                  }
+                );
             }, error => {
             });
         });

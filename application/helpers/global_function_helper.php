@@ -124,10 +124,16 @@ function render($view,$data='',$layout='main', $ret=false){
 	//  print_r($CI->uri->segment(1));exit();
 	$data['guid'] = '';
 	$data['group_name'] = '';
+	$data['general'] = '';
 	if($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) && $CI->uri->segment(3)){
 		$data['base64_guid'] = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['name']));
 		$data['group_name'] = $data['name'];
+		$data['admin_name'] = $data['admin_name'];
 		$data['cometchat-js'] = base_url('asset/js/cometchat-group.js');
+	} else if ($CI->uri->segment(1) == "meeting-room") {
+	} else if ($CI->uri->segment(1) == "") {
+		$data['general'] = "general";
+		$data['cometchat-js'] = base_url('asset/js/cometchat-public.js');
 	} else {
 		$data['cometchat-js'] = base_url('asset/js/cometchat-public.js');
 	}
