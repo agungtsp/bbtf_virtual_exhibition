@@ -25,14 +25,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 CometChat.createGroup(group).then();
                 group.setIcon(group_logo_url);
                 CometChat.updateGroup(group).then();
-                CometChat.leaveGroup(GUID).then();
                 let usersRequest = new CometChat.UsersRequestBuilder().setLimit(0).build();
                 let membersList = [
                   new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
                   new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
                 ];
                 CometChat.addMembersToGroup(GUID, membersList, []).then();
-                CometChat.transferGroupOwnership(GUID, "admin").then();
+                CometChat.transferGroupOwnership(GUID, "admin").then(
+                    () => {
+                        CometChat.leaveGroup(GUID).then();
+                    }
+                );
                 CometChatWidget.launch({
                     "widgetID": "590bc393-f078-494a-8ee8-c777b33978f3",
                     "docked": "true",
