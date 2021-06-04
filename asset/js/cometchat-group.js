@@ -43,8 +43,8 @@ function show_widget_chat(){
     });
 }
 window.addEventListener('DOMContentLoaded', (event) => {
-    let usersRequest = new CometChat.UsersRequestBuilder().setLimit(30).build();
-   console.log(usersRequest);
+//     let usersRequest = new CometChat.UsersRequestBuilder().setLimit(30).build();
+//    console.log(usersRequest);
     var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
     CometChat.init(appID, appSetting).then();
     CometChatWidget.init({
@@ -55,6 +55,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         CometChatWidget.login({
             uid: "admin",
         }).then((loggedInUser) => {
+            console.log(loggedInUser);
             var groupName = GROUP_NAME;
             var groupType = CometChat.GROUP_TYPE.PUBLIC;
             var password = "";
