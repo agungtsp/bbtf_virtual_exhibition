@@ -1,3 +1,54 @@
+
+window.addEventListener('DOMContentLoaded', (event) => {
+//     let usersRequest = new CometChat.UsersRequestBuilder().setLimit(30).build();
+//    console.log(usersRequest);
+    var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
+    CometChat.init(appID, appSetting).then();
+    CometChatWidget.init({
+        "appID": appID,
+        "appRegion": appRegion,
+        "authKey": authKey
+    }).then(response => {
+        CometChatWidget.login({
+            uid: "admin",
+        }).then((loggedInUser) => {
+            console.log(loggedInUser);
+            var groupName = GROUP_NAME;
+            var groupType = CometChat.GROUP_TYPE.PUBLIC;
+            var password = "";
+
+            var group = new CometChat.Group(GUID, groupName, groupType, password);
+
+            CometChat.createGroup(group).then(
+                () => {
+                    console.log(group);
+                    group.setIcon(group_logo_url);
+                    CometChat.updateGroup(group).then(
+                        () => {
+                            let membersList = [
+                                new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                                new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                            ];
+                            CometChat.addMembersToGroup(GUID, membersList, []).then(
+                                () => {
+                                    CometChat.transferGroupOwnership(GUID, "admin").then(
+                                        () => {
+                                            CometChat.leaveGroup(GUID).then();
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
+                    show_widget_chat();
+                }, error => {
+                    show_widget_chat();
+                }
+            );
+        });
+    });
+
+});
 function show_widget_chat(){
     CometChatWidget.init({
         "appID": appID,
@@ -42,55 +93,6 @@ function show_widget_chat(){
     }, error => {
     });
 }
-window.addEventListener('DOMContentLoaded', (event) => {
-//     let usersRequest = new CometChat.UsersRequestBuilder().setLimit(30).build();
-//    console.log(usersRequest);
-    var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
-    CometChat.init(appID, appSetting).then();
-    CometChatWidget.init({
-        "appID": appID,
-        "appRegion": appRegion,
-        "authKey": authKey
-    }).then(response => {
-        CometChatWidget.login({
-            uid: "admin",
-        }).then((loggedInUser) => {
-            console.log(loggedInUser);
-            var groupName = GROUP_NAME;
-            var groupType = CometChat.GROUP_TYPE.PUBLIC;
-            var password = "";
-
-            var group = new CometChat.Group(GUID, groupName, groupType, password);
-
-            CometChat.createGroup(group).then(
-                () => {
-                    group.setIcon(group_logo_url);
-                    CometChat.updateGroup(group).then(
-                        () => {
-                            let membersList = [
-                                new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
-                                new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
-                            ];
-                            CometChat.addMembersToGroup(GUID, membersList, []).then(
-                                () => {
-                                    CometChat.transferGroupOwnership(GUID, "admin").then(
-                                        () => {
-                                            CometChat.leaveGroup(GUID).then();
-                                        }
-                                    );
-                                }
-                            );
-                        }
-                    );
-                    show_widget_chat();
-                }, error => {
-                    show_widget_chat();
-                }
-            );
-        });
-    });
-
-});
 function add_friend(){
     CometChatWidget.init({
         "appID": appID,
