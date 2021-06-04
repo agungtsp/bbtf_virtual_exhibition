@@ -76,6 +76,7 @@ function swalAlert(text,type) {
     swal('',text,type);
 }
 $( document ).ready(function() {
+  $('.lazy').lazy();
   $('#brochure, #compro').on('shown.bs.modal', function (event) {
     $('.pdf-viewer').each(function(i, obj) {
       $(this).attr("data", $(this).attr("data-src"));
