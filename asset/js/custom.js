@@ -85,8 +85,9 @@ $( document ).ready(function() {
     });
   });
   $("#modalVideo").on('shown.bs.modal', function (event) {
-    $('.list-video').each(function(i, obj) {
+    $('.list-video video source').each(function(i, obj) {
       $(this).attr("src", $(this).attr("data-src"));
+      $(this).parent()[0].load();
     });
   });
 });
