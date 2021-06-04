@@ -92,3 +92,9 @@ $( document ).ready(function() {
     });
   });
 });
+
+$( document ).ready(function() {
+  setInterval(function() { 
+      $('.lazy').lazy();
+  }, 1000);
+});
