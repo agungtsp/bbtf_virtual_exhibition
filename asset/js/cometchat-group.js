@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     CometChat.updateGroup(group).then(
                         () => {
                             let membersList = [
-                                // new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                                new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
                                 new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
                             ];
                             CometChat.addMembersToGroup(GUID, membersList, []).then(
