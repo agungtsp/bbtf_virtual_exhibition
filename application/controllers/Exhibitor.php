@@ -37,4 +37,16 @@ class Exhibitor extends CI_Controller {
 			redirect("404");
 		}
 	}
+
+	function compress_image($date){
+		$this->layout 			= 'none';
+		$data = $this->Exhibitor_model->findBy(array("date_create >=" => $date));
+		$this->load->library('tinypng', array('api_key' => 'HIWczeQdPd4wNly-w-IL3HJjoCUY1-bD'));
+		foreach($data as $data_key => $data_value){
+			$this->tinypng->fileCompress(path_image($data['logo'],'large'), path_image($data['logo'],'small'));
+			// $data['logo_url'] = image($data['logo'],'large');
+			// $data['booth_design_url'] = image($data['booth_design'],'large');
+		}
+		exit();
+	}
 }

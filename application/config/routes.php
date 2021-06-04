@@ -54,6 +54,7 @@ $route['default_controller'] 	= "home";
 $route['404_override'] 			= 'notfound';
 
 // start frontend
+$route['exhibitor/compress_image/(:any)']        = 'exhibitor/compress_image/$1';
 $route['exhibition/(:any)']        = 'exhibition/index/$1';
 $route['exhibitor/(:any)/(:any)'] = 'exhibitor/detail/$1/$2';
 $route['exhibitor']           = 'exhibitor';

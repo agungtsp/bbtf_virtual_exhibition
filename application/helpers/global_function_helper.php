@@ -1296,3 +1296,12 @@ function get_user_session(){
 	}
 	return $user_sess;
 }
+
+function path_image($img,$path,$ret=0){
+	$path = "$path/";
+	$path = str_replace('//', '', $path);
+	$CI=& get_instance();
+	$data = (base_url().'images/article/'.$path.$img);
+    return $data;
+
+}
