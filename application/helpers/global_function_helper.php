@@ -125,7 +125,7 @@ function render($view,$data='',$layout='main', $ret=false){
 	$data['guid'] = '';
 	$data['group_name'] = '';
 	if($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) && $CI->uri->segment(3)){
-		$data['base64_guid'] = strtolower(preg_replace('/[0-9]+/', '', base64_encode($data['name'].'_'.$file)));
+		$data['base64_guid'] = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['name']));
 		$data['group_name'] = $data['name'];
 		$data['cometchat-js'] = base_url('asset/js/cometchat-group.js');
 	} else {

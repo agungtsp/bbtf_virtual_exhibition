@@ -75,3 +75,18 @@ function swalAlert(text,type) {
     type     = type ? type : 'success';//success//info//warning//error
     swal('',text,type);
 }
+$( document ).ready(function() {
+  $('#brochure, #compro').on('shown.bs.modal', function (event) {
+    $('.pdf-viewer').each(function(i, obj) {
+      $(this).attr("data", $(this).attr("data-src"));
+    });
+    $('.pdf-viewer iframe').each(function(i, obj) {
+      $(this).attr("src", $(this).attr("data-src"));
+    });
+  });
+  $("#modalVideo").on('shown.bs.modal', function (event) {
+    $('.list-video').each(function(i, obj) {
+      $(this).attr("src", $(this).attr("data-src"));
+    });
+  });
+});

@@ -1,4 +1,6 @@
-window.addEventListener('DOMContentLoaded', (event) => {    
+window.addEventListener('DOMContentLoaded', (event) => {
+    let usersRequest = new CometChat.UsersRequestBuilder().setLimit(30).build();
+   console.log(usersRequest);
     var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(appRegion).build();
     CometChat.init(appID, appSetting).then();
     CometChatWidget.init({
@@ -14,7 +16,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             CometChatWidget.login({
                 uid: UID,
             }).then((loggedInUser) => {
-                var GUID = GUID;
                 var groupName = GROUP_NAME;
                 var groupType = CometChat.GROUP_TYPE.PUBLIC;
                 var password = "";
@@ -22,8 +23,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 var group = new CometChat.Group(GUID, groupName, groupType, password);
 
                 CometChat.createGroup(group).then();
+                group.setIcon(group_logo_url);
+                CometChat.updateGroup(group).then();
+                CometChat.leaveGroup(GUID).then();
+                let usersRequest = new CometChat.UsersRequestBuilder().setLimit(0).build();
+                let membersList = [
+                  new CometChat.GroupMember("admin", CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                  new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT),
+                ];
+                CometChat.addMembersToGroup(GUID, membersList, []).then();
+                CometChat.transferGroupOwnership(GUID, "admin").then();
                 CometChatWidget.launch({
-                    "widgetID": "93767f54-5a9c-4c07-978a-044cd584ce8a",
+                    "widgetID": "590bc393-f078-494a-8ee8-c777b33978f3",
                     "docked": "true",
                     "alignment": "right", //left or right
                     "roundedCorners": "true",
