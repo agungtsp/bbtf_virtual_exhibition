@@ -14,10 +14,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             CometChatWidget.login({
                 uid: UID,
             }).then((loggedInUser) => {
-                let membersList = [
-                    new CometChat.GroupMember(UID, CometChat.GROUP_MEMBER_SCOPE.PARTICIPANT)
-                ];
-                CometChat.addMembersToGroup('general', membersList, []).then();
                 CometChatWidget.launch({
                     "widgetID": "93767f54-5a9c-4c07-978a-044cd584ce8a",
                     "docked": "true",
