@@ -15,6 +15,7 @@ class Meeting_schedule extends CI_Controller {
 		}
 		if ($user['id_ref_user_category']!=1 && $user['id_ref_user_category']!=2) {
 		   render("layout/ddi/404_error_page", $data, 'main');
+		   return;
 		}
 		$data_meeting = $this->Meeting_model->findBy([]);
 		$list_meeting = [];
