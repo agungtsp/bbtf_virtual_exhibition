@@ -22,6 +22,12 @@ class Meeting_model extends  CI_Model{
 		if($isTotal==0){
 			$data = $query->result_array();
 			foreach($data as $key => $value){
+				if ($value['participants']) {
+					$where_in = ' and id_auth_user in ('.$value['participants'].')';
+					$data[$key]['list_participants'] = selectlist2_meeting(array('table'=>'auth_user','no_title'=>1,'name'=>'full_name','email'=>'email', 'id'=> 'id_auth_user', 'where' => 'id_auth_user_grup = 4 and id_ref_user_category in (2)'.$where_in));
+				} else {
+					$data[$key]['list_participants'] = '';
+				}
 				$schedule = iso_date($value['start_date']);
 				$schedule .= ($value['start_time'] && $value['end_time']) ? " From ". $value['start_time'] . " To " . $value['end_time'] : ' For All Day';
 				$data[$key]['schedule_date'] = $schedule;
