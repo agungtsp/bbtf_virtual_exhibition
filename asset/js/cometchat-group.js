@@ -64,7 +64,6 @@ function show_widget_chat(){
                 uid: UID,
             }).then((loggedInUser) => {
                 var adminName = ADMIN_NAME;
-                console.log(adminName)
                 var limit = 100;
                 var usersRequest = new CometChat.UsersRequestBuilder().setLimit(limit).build();
 
@@ -109,6 +108,7 @@ function show_widget_chat(){
                 },
                   error => {
                     console.log("User list fetching failed with error:", error);
+                    location.reload();
                   }
                 );
             }, error => {
