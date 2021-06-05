@@ -13,6 +13,9 @@ class Meeting_schedule extends CI_Controller {
 			$this->db->or_where('exhibitor_id', $user['exhibitor_id']);
 			$this->db->group_end();
 		}
+		if ($user['id_ref_user_category']!=1 && $user['id_ref_user_category']!=2) {
+		   render("layout/ddi/404_error_page", $data, 'main');
+		}
 		$data_meeting = $this->Meeting_model->findBy([]);
 		$list_meeting = [];
 		foreach($data_meeting as $key => $value){

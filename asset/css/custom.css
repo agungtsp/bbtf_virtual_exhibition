@@ -155,3 +155,6 @@
 .exhibition-area{
     padding-bottom: 50px;
 }
+.hidden{
+    display: none;
+}

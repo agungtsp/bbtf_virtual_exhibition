@@ -103,6 +103,9 @@ function render($view,$data='',$layout='main', $ret=false){
 					$data['user_avatar'] = image($exhibitor['logo'], 'large');
 				}
 			}
+			if ($user['id_ref_user_category']!=1 && $user['id_ref_user_category']!=2) {
+	 			$data['type'] = "hidden";
+			}
 			
 			$data['base64_user_email'] = str_replace("=", "", base64_encode($user['email']));
 		} else {
