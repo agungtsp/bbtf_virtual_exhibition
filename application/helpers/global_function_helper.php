@@ -731,6 +731,28 @@ function selectlist2_training($conf){
 	}
 	return $opt;
 }
+function selectlist2_meeting($conf){
+	$CI				 = &get_instance();
+	$tbl 			 = $conf['table'];
+	$is_encrypt		 = ($conf['is_encrypt']) ? 1 : 0;
+	$id				 = ($conf['id']) ? $conf['id'] : 'id';
+	$idx             = $is_encrypt ? md5field($id,$id) : $id; 
+	$name			 = ($conf['name']) ? $conf['name'] : 'name';
+	$email			 = ($conf['email']) ? $conf['email'] : 'email';
+	$where			 = $conf['where'];
+	$selected		 = $conf['selected'];
+	$title			 = ($conf['title']) ? $conf['title'] : '=== Pilih ==='; //$conf['title'];
+	$order			 = $conf['order'];
+	$or 			 = (empty($order) ? $name : $order);
+	$list 			 = $CI->db->order_by($or,'asc')->select("$idx , $name, $email")->get_where($tbl,$where)->result_array();
+	$opt 			 = $conf['no_title'] ? '' : "<option value=''>$title</option>";
+	$opt			.= ($conf['add_new']) ? ("<option value='addNew'>+ Add $conf[add_new]</option>"): '';
+	foreach($list as $l){
+		$terpilih 	 = ($selected == $l[$id]) ? 'selected' : '';
+		$opt 		.= "<option $terpilih value='$l[$id]'> $l[$email] ($l[$name])</option>";
+	}
+	return $opt;
+}
 function list_account($type){
 	 return 		selectlist2(array('table'=>'account','name'=>'account_name','no_title'=>1,'where'=>array('type'=>$type,'company_id'=>company_id())));
 
