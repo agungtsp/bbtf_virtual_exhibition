@@ -8,6 +8,7 @@ class Member extends CI_Controller {
 	function index(){
 		$data['list_user_group'] 		= selectlist2(array('table'=>'auth_user_grup','id'=>'id_auth_user_grup','name'=>'grup','title'=>'All User Group', 'where' => 'id_auth_user_grup in (3, 4)'));
 		$data['list_ref_user_category'] 		= selectlist2(array('table'=>'ref_user_category','title'=>'All User Group','selected'=>$data['id_ref_user_category'], 'where' => array("is_delete" => 0)));
+		$data['list_exhibitor'] = selectlist2(array('table'=>'exhibitor','title'=>'All Exhibitor','selected'=>$data['id_exhibitor']));
 		render('apps/member/index',$data,'apps');
 	}
 	public function add($id=''){

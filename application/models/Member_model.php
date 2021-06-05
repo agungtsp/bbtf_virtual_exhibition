@@ -10,14 +10,16 @@ class Member_model extends  CI_Model{
 		$alias['search_name']      = 'a.name';
 		$alias['search_usergroup'] = 'a.id_auth_user_grup';
 		$alias['search_usercategory'] = 'a.id_ref_user_category';
+		$alias['search_exhibitor_id'] = 'a.exhibitor_id';
 		$_GET['sort_field']        = ($_GET['sort_field']=="a.id") ? "id_auth_user" : $_GET['sort_field'];
 
 	 	query_grid($alias,$isTotal);
 
-		$this->db->select("c.name as user_category, a.id_auth_user as id, a.id_auth_user_grup, a.is_delete,grup, a.userid, a.full_name,a.email,a.phone, b.grup as user_group");
+		$this->db->select("c.name as user_category, a.id_auth_user as id, a.id_auth_user_grup, a.is_delete,grup, a.userid, a.full_name,a.email,a.phone, b.grup as user_group, d.name as exhibitor");
 		$this->db->where('a.is_delete',0);
 		$this->db->join('auth_user_grup b','b.id_auth_user_grup = a.id_auth_user_grup');
 		$this->db->join('ref_user_category c','c.id = a.id_ref_user_category');
+		$this->db->join('exhibitor d','d.id = a.exhibitor_id', 'left');
 		$query = $this->db->get_where($this->tableAs,$where);
 
 		if($isTotal==0){
