@@ -136,7 +136,7 @@
             });
         });
         var check_schedule = setInterval(function() { 
-            var now = moment().zone('+0700').format('YYYY-MM-DD HH:mm');
+            var now = moment().zone('+0800').format('YYYY-MM-DD HH:mm');
             var ms = moment(now,"YYYY-MM-DD HH:mm").diff(moment(schedule_time,"YYYY-MM-DD HH:mm"));
             if(ms > 0){
                 swal({
@@ -144,7 +144,10 @@
                     type: "success",
                     icon: "success"
                 }).then(function() {
-                    $('.close-iframe').click();
+                    $('.overlay-black').remove();
+                    $('iframe[allow="microphone; camera; autoplay; display-capture"]').remove();
+                    clearInterval(interval);
+                    clearInterval(check_schedule);
                     clearInterval(check_schedule);
                 });
             } else {

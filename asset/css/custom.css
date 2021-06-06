@@ -118,6 +118,7 @@
 }
 #cometchat__widget {
     position: fixed;
+    z-index: 1;
 }
 .css-tjk9j3 {
     width: 120px !important;

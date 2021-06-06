@@ -45,18 +45,23 @@ class Exhibitor extends CI_Controller {
 
 	function compress_image($date){
 		$this->layout 			= 'none';
-		$this->load->library('tinypng', array('api_key' => 'HIWczeQdPd4wNly-w-IL3HJjoCUY1-bD'));
+		$this->load->library('tinypng', array('api_key' => 'zYXMqss9wqF29hfZ2ZRFNqnSPn7mWtRR'));
 		$data = $this->Exhibitor_model->findBy(array("date_create >=" => $date));
 		foreach($data as $data_key => $data_value){
-			// $this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['logo'], UPLOAD_DIR.'small/'.$data_value['logo']);
-			// $this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['booth_design'], UPLOAD_DIR.'small/'.$data_value['booth_design']);
-			$list_poster_product = get_upload_multifile($data_value['id'], $data_value['poster_product'], 0);
-			foreach($list_poster_product as $poster_key => $poster_value){
-				$ext = strtolower(end(explode('.',$poster_value['name'])));
-				$fname = str_replace(".".$ext, '', $poster_value['name']);
-				$this->tinypng->fileCompress(UPLOAD_DIR.'uploads/'.$data_value['id'].'/'. $poster_value['name'], UPLOAD_DIR.'uploads/'.$data_value['id'].'/'.$fname.'-min.'.$ext);
-			}
+			$this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['logo'], UPLOAD_DIR.'small/'.$data_value['logo']);
+			$this->tinypng->fileCompress(UPLOAD_DIR.'large/'.$data_value['booth_design'], UPLOAD_DIR.'small/'.$data_value['booth_design']);
+			// $list_poster_product = get_upload_multifile($data_value['id'], $data_value['poster_product'], 0);
+			// foreach($list_poster_product as $poster_key => $poster_value){
+			// 	$ext = strtolower(end(explode('.',$poster_value['name'])));
+			// 	$fname = str_replace(".".$ext, '', $poster_value['name']);
+			// 	// echo UPLOAD_DIR.'../../uploads/'.$data_value['id'].'/'. $poster_value['name']."<br>";
+			// 	// echo UPLOAD_DIR.'../../uploads/'.$data_value['id'].'/'.$fname.'.'.$ext."<br>";
+			// 	$this->tinypng->fileCompress(UPLOAD_DIR.'../../uploads/'.$data_value['id'].'/'. $poster_value['name'], UPLOAD_DIR.'../../uploads/'.$data_value['id'].'/'.$fname.'.'.$ext);
+			// }
 		}
+		exit();
+		exit();
+
 		exit();
 	}
 }
