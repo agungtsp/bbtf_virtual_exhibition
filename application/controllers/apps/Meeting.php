@@ -44,7 +44,7 @@ class Meeting extends CI_Controller {
 		$data['logo'] = imagemanager2('logo',$logo,'','logo',$data['logo']);
 		$data['list_status_publish'] = selectlist2(array('table'=>'status_publish','title'=>'All Status','selected'=>$data['id_status_publish']));
 		$data['list_exhibitor'] = selectlist2(array('table'=>'exhibitor','title'=>'All Exhibitor','selected'=>$data['exhibitor_id']));
-		$data['list_participants'] = selectlist2_meeting(array('table'=>'auth_user','no_title'=>1,'name'=>'full_name','email'=>'email', 'id'=> 'id_auth_user', 'where' => 'id_auth_user_grup = 4 and id_ref_user_category in (2)' ));
+		$data['list_participants'] = selectlist2_meeting(array('table'=>'auth_user','no_title'=>1,'name'=>'company','email'=>'email', 'id'=> 'id_auth_user', 'where' => 'id_auth_user_grup = 4 and id_ref_user_category in (2)' ));
 		render('apps/meeting/add',$data,'apps');
 	}
 	function records(){

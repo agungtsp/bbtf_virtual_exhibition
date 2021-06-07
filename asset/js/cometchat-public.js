@@ -11,6 +11,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             name: USERNAME,
             avatar: AVATAR
         }).then((user) => {
+            if(AVATAR){
+                user.setAvatar(AVATAR);
+                 CometChat.updateCurrentUserDetails(user).then(
+                    user => {
+                        console.log("user updated", user);
+                    }, error => {
+                        console.log("error", error);
+                    }
+                )
+            }
             CometChatWidget.login({
                 uid: UID,
             }).then((loggedInUser) => {
@@ -29,18 +39,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     "defaultID": general, //default UID (user) or GUID (group) to show,
                     "defaultType": 'group' //user or group
             });
-            if(AVATAR){
-                var user = new CometChat.User(UID);
+            // if(AVATAR){
+            //     var user = new CometChat.User(UID);
 
-                user.setAvatar(AVATAR);
-                CometChat.updateCurrentUserDetails(user).then(
-                    // user => {
-                    //     console.log("user updated", user);
-                    // }, error => {
-                    //     console.log("error", error);
-                    // }
-                )
-            }
+            //     user.setAvatar(AVATAR);
+            //     console.log(user)
+            //     CometChat.updateCurrentUserDetails(user).then(
+            //         user => {
+            //             console.log("user updated", user);
+            //         }, error => {
+            //             console.log("error", error);
+            //         }
+            //     )
+            // }
         }, error => {
         });
     });
