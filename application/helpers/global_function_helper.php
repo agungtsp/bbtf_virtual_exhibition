@@ -92,6 +92,7 @@ function render($view,$data='',$layout='main', $ret=false){
 	 if($layout=='apps'){
 		$data['is_enable_export_excel'] = (group_id() == 1 or group_id() == 4 or group_id() == 5) ? '' : 'invis';
 	 }
+	 $data['list_member'] = json_encode($data['list_member']);
 	 if($layout=='main'){
 		if($user = get_user_session()){
 			$data['user_email'] = $user['email'];
