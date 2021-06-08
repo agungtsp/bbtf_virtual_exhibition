@@ -141,7 +141,7 @@ function render($view,$data='',$layout='main', $ret=false){
 	} else {
 		$data['cometchat-js'] = base_url('asset/js/cometchat-public.js');
 	}
-	if (($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) && $CI->uri->segment(3))||$CI->uri->segment(1) == ""){
+	if (($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) == "")||$CI->uri->segment(1) == ""){
 		$data['search_box'] = "";
 		// $data['list_exhibitor'] = $CI->db->get_where('exhibitor', array('is_delete' => 0))->row_array();
 		$data['list_exhibitor'] = selectlist2_exhibitor(array('table'=>'exhibitor','url'=>'uri_path','category'=>'id_exhibitor_category','logo'=>'logo','title'=>'Search Exhibitor', 'where' => 'is_delete = 0'));

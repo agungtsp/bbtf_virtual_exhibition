@@ -126,6 +126,16 @@
         .app__launcher{
             margin-bottom: 15px;
         }
+        .dropdown-menu .select2{
+          width: 100% !important;
+          font-size: 16px;
+        }
+        .select2-container .select2-selection--single{
+          height: 40px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered{
+          line-height: 40px;
+        }
     </style>
     <script defer src="https://widget-js.cometchat.io/v3/cometchatwidget.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@3.0.0-beta5/CometChat.js"></script>
@@ -152,6 +162,12 @@
           }
           window.location.href = base_url+'exhibitor/'+category+'/'+$('#search_exhibitor_id option:selected').attr('data-url');
         });
+        $( document ).ready(function() {
+          $('#search_exhibitor_id').select2({
+            placeholder: "Search Exhibitor"
+          });
+        });
+
     </script>
     <script type="text/javascript" src="{cometchat-js}"></script>
 </body>
