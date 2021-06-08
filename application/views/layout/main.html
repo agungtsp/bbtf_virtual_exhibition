@@ -143,9 +143,9 @@
         const list_member = '{list_member}';
         $(document).on('change', '#search_exhibitor_id', function() {
           var category = '';
-          if ($('#search_exhibitor_id option:selected').attr('data-url')==1) {
+          if ($('#search_exhibitor_id option:selected').attr('data-category')==1) {
             category = 'silver';
-          } else if ($('#search_exhibitor_id option:selected').attr('data-url')==1) {
+          } else if ($('#search_exhibitor_id option:selected').attr('data-category')==2) {
             category = 'gold';
           } else {
             category = 'platinum';
