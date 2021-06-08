@@ -141,6 +141,13 @@ function render($view,$data='',$layout='main', $ret=false){
 	} else {
 		$data['cometchat-js'] = base_url('asset/js/cometchat-public.js');
 	}
+	if (($CI->uri->segment(1) == "exhibitor" && $CI->uri->segment(2) && $CI->uri->segment(3))||$CI->uri->segment(1) == ""){
+		$data['search_box'] = "";
+		// $data['list_exhibitor'] = $CI->db->get_where('exhibitor', array('is_delete' => 0))->row_array();
+		$data['list_exhibitor'] = selectlist2_exhibitor(array('table'=>'exhibitor','url'=>'uri_path','category'=>'id_exhibitor_category','logo'=>'logo','title'=>'All Exhibitor', 'where' => 'is_delete = 0'));
+	} else {
+		$data['search_box'] = "hidden";
+	}
 	 $data['show_logout'] = (get_user_session()) ? "" : "hidden";
 	 $data['app_name'] = APP_NAME;
 	 $data['language']		=  LANGUAGE;
@@ -754,6 +761,30 @@ function selectlist2_meeting($conf){
 	foreach($list as $l){
 		$terpilih 	 = ($selected == $l[$id]) ? 'selected' : '';
 		$opt 		.= "<option $terpilih value='$l[$id]'> $l[$email] ($l[$name])</option>";
+	}
+	return $opt;
+}
+function selectlist2_exhibitor($conf){
+	$CI				 = &get_instance();
+	$tbl 			 = $conf['table'];
+	$is_encrypt		 = ($conf['is_encrypt']) ? 1 : 0;
+	$id				 = ($conf['id']) ? $conf['id'] : 'id';
+	$idx             = $is_encrypt ? md5field($id,$id) : $id; 
+	$name			 = ($conf['name']) ? $conf['name'] : 'name';
+	$url			 = ($conf['url']) ? $conf['url'] : 'url';
+	$logo			 = ($conf['logo']) ? $conf['logo'] : 'logo';
+	$category		 = ($conf['category']) ? $conf['category'] : 'category';
+	$where			 = $conf['where'];
+	$selected		 = $conf['selected'];
+	$title			 = ($conf['title']) ? $conf['title'] : '=== Pilih ==='; //$conf['title'];
+	$order			 = $conf['order'];
+	$or 			 = (empty($order) ? $name : $order);
+	$list 			 = $CI->db->order_by($or,'asc')->select("$idx , $name, $url, $logo, $category")->get_where($tbl,$where)->result_array();
+	$opt 			 = $conf['no_title'] ? '' : "<option value=''>$title</option>";
+	$opt			.= ($conf['add_new']) ? ("<option value='addNew'>+ Add $conf[add_new]</option>"): '';
+	foreach($list as $l){
+		$terpilih 	 = ($selected == $l[$id]) ? 'selected' : '';
+		$opt 		.= "<option $terpilih data-url='$l[$url]' data-logo='$l[$logo]' data-category='$l[$category]' value='$l[$id]'> $l[$name]</option>";
 	}
 	return $opt;
 }

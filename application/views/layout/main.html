@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="{base_url}asset/css/owl.carousel.min.css">
   <link rel="stylesheet" href="{base_url}asset/css/style.css">
   <link rel="stylesheet" href="{base_url}asset/css/custom.css">
-
+  <link href="{url_static_content}template/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="{url_static_content}template/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/6f62d3d090.js" crossorigin="anonymous"></script>
 
   {css_file}
@@ -81,6 +82,13 @@
                   <li class="nav-item {active_meeting_schedule} {type}">
                       <a class="nav-link" href="{base_url}meeting-room">Meeting Room</a>
                   </li>
+                  <li class="nav-item dropdown nav-search {search_box}">
+                      <a class="nav-link px-3" href="#"><i class="bi bi-search"></i></a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- <input type="text" class="form-control" placeholder="Search here..."> -->
+                        <select id="search_exhibitor_id" class='cari form-control'>{list_exhibitor}</select>
+                      </div>
+                  </li>
               </ul>
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item {show_logout}">
@@ -100,6 +108,7 @@
   <script src="{base_url}asset/js/jquery.lazy.min.js"></script>
   <script src="{base_url}asset/plugins/sweetalert/sweetalert.min.js"></script>
   <script src="{base_url}asset/js/custom.js"></script>
+  <script src="{url_static_content}template/assets/plugins/select2/dist/js/select2.min.js"></script>
   {js_file}
 
     <style>
@@ -132,6 +141,17 @@
         const appRegion = 'us';
         const authKey = '{comethat_authKey}';
         const list_member = '{list_member}';
+        $(document).on('change', '#search_exhibitor_id', function() {
+          var category = '';
+          if ($('#search_exhibitor_id option:selected').attr('data-url')==1) {
+            category = 'silver';
+          } else if ($('#search_exhibitor_id option:selected').attr('data-url')==1) {
+            category = 'gold';
+          } else {
+            category = 'platinum';
+          }
+          window.location.href = base_url+'exhibitor/'+category+'/'+$('#search_exhibitor_id option:selected').attr('data-url');
+        });
     </script>
     <script type="text/javascript" src="{cometchat-js}"></script>
 </body>

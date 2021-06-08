@@ -121,6 +121,9 @@ function the_grid(grid_id,url_grid,per_page,order_id,order_direction,page,next){
 			}, ms);
 		
 		});
+		$('input.datepicker:not(.disabled-autofilter)').change(function(){
+            cari();
+        })
 		$(document).on('click','.ui-datepicker-close',function(){
 			cari();
 		})

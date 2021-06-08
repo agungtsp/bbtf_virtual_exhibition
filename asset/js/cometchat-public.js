@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 },
                   error => {
                     console.log("User list fetching failed with error:", error);
-                    location.reload();
+                    // location.reload();
                   }
                 );
 

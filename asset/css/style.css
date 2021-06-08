@@ -95,6 +95,21 @@ header.container {
     background: #593011;
     color: #fff;
 }
+.navbar-bbtf .navbar-nav .nav-search {
+	position: inherit;
+}
+.navbar-bbtf .navbar-nav .nav-search .dropdown-menu {
+	transition: ease all .2s;
+}
+.navbar-bbtf .navbar-nav .nav-search .dropdown-menu input {
+	padding-left: 79px;
+}
+.navbar-bbtf .nav-item.nav-search:hover .dropdown-menu {
+	width: 100%;
+    padding: 5px;
+    border: 0;
+    background: #934511;
+}
 /*header end*/
 
 .thumbnail {
@@ -302,6 +317,7 @@ header.container {
     line-height: normal;
     margin-bottom: 0;
     font-weight: 700;
+    margin-top: 30px;
 }
 .v-exhibition img {
 	margin: 0 auto;
