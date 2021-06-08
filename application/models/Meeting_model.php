@@ -13,6 +13,7 @@ class Meeting_model extends  CI_Model{
 		$alias['search_exhibitor_id'] = 'a.exhibitor_id';
 		
 		$alias['search_name'] = 'a.name';
+		$alias['search_start_date'] = "date_format(a.start_date,'%d-%m-%Y')";
 	 	query_grid($alias,$isTotal);
 		$this->db->select("a.*,d.name as status_publish, e.name as exhibitor_name");
 		$this->db->join('status_publish d','d.id = a.id_status_publish');
@@ -29,7 +30,7 @@ class Meeting_model extends  CI_Model{
 					$data[$key]['list_participants'] = '';
 				}
 				$schedule = iso_date($value['start_date']);
-				$schedule .= ($value['start_time'] && $value['end_time']) ? " From ". $value['start_time'] . " To " . $value['end_time'] : ' For All Day';
+				// $schedule .= ($value['start_time'] && $value['end_time']) ? " From ". $value['start_time'] . " To " . $value['end_time'] : ' For All Day';
 				$data[$key]['schedule_date'] = $schedule;
 				$data[$key]['start_date'] = iso_date($value['start_date']);
 			}

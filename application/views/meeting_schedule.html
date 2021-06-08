@@ -75,7 +75,8 @@
                             <tr>
                                 <td>{time}</td>
                                 <td>{name}</td>
-                                <td><a href="#" title="Join Meeting" data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}', '{start_date_original} {end_time}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                                <td class="{hide1}"><a href="#" title="Join Meeting" data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}', '{start_date_original} {end_time}');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
+                                <td class="{hide2}"><a href="#" title="Please Wait..." disabled data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td>
                                 <!-- <td><a href="#" title="Join Meeting" data-date="{start_date_original}" data-time="{end_time}" data-title="tooltip" data-placement="bottom" onclick="createFrameAndJoinRoom('{meeting_url}', '2021-06-04 09:37');" class="btn btn-primary bg-brown"><i class="fa fa-users mr-1"></i> Join Meeting</a></td> -->
                             </tr>
                         {/list_data}
@@ -129,9 +130,9 @@
             clearInterval(interval);
             clearInterval(check_schedule);
             swal({
-					text: "Thank You For Your Participation",
-					type: "success",
-					icon: "success"
+                    text: "Thank You For Your Participation",
+                    type: "success",
+                    icon: "success"
             }).then(function() {
             });
         });
@@ -140,7 +141,7 @@
             var ms = moment(now,"YYYY-MM-DD HH:mm").diff(moment(schedule_time,"YYYY-MM-DD HH:mm"));
             if(ms > 0){
                 swal({
-					text: "Meeting End \n Thank You For Your Participation",
+                    text: "Meeting End \n Thank You For Your Participation",
                     type: "success",
                     icon: "success"
                 }).then(function() {
