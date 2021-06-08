@@ -21,45 +21,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 )
             }
-            var limit = 100;
-            var usersRequest = new CometChat.UsersRequestBuilder().setLimit(limit).build();
-            usersRequest.fetchNext().then(
-                userList => {
-                    /* userList will be the list of User class. */
-                    // console.log("User list received:", userList);
-                    var name_member = JSON.parse(list_member);
-                    console.log(name_member)
-                    for (var i = 0; i < name_member.length; i++) {
-                        var dt = name_member[i];
-                        if (dt) {
-                            var adminID = userList.find(x => x.name === dt.full_name);
-                            if (adminID === undefined) {
-                                adminID = 'admin';
-                            } else {
-                                 CometChatWidget.createOrUpdateUser({
-                                    uid: adminID.uid,
-                                    name: adminID.name,
-                                  }).then((user) => {
-                                    user.setAvatar(dt.user_avatar);
-                    console.log(user)
-                                    CometChat.updateCurrentUserDetails(user).then(
-                                        user => {
-                                            console.log("user updated", user);
-                                        }, error => {
-                                            console.log("error", error);
-                                        }
-                                    )
-                                });
-                            }
-                        }
-                    }
-                },
-                  error => {
-                    console.log("User list fetching failed with error:", error);
-                    // location.reload();
-                  }
-                );
-
             CometChatWidget.login({
                 uid: UID,
             }).then((loggedInUser) => {
