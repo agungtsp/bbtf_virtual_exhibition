@@ -17,7 +17,7 @@ class Visitor_report_model extends  CI_Model{
 			$data = $query->result_array();
 			foreach($data as $key => $value){
 				$asd = $this->db->order_by("id", "desc")->get_where("page_hits","url like '%".strtolower($value['uri_path'])."%'")->row_array();
-				$count = $this->db->get_where("page_hits","url like '%".strtolower($value['uri_path'])."%'")->num_rows();
+				$count = $this->db->get_where("page_hits","url like '%".strtolower($value['uri_path'])."%' and user_create_id is not null")->num_rows();
 				$data[$key]['url'] = ($asd) ? $asd['url'] : "";
 				$data[$key]['count'] = ($count) ? $count : "";
 			}
