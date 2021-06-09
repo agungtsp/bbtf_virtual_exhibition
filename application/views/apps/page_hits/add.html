@@ -1,0 +1,97 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+				<div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				</div>
+				<h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id_auth_user}' id='form1' class="form-horizontal" autocomplete="off">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">User Group <i class='req'>*</i></label>
+								<div class="col-md-9"><select class="form-control" id="id_auth_user_grup" name="id_auth_user_grup" data-parsley-required="true">{list_user_group}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Title <i class='req'>*</i></label>
+								<div class="col-md-9">
+									<label class="radio-inline">
+										<input type="radio" data-parsley-required="true" name="title" id="title" value='mr' data-parsley-errors-container="#error-title" {checked_mr}> Mr.
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="title" id="title" value='mrs' {checked_mrs}> Mrs.
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="title" id="title" value='ms' {checked_ms}> Ms.
+									</label>
+									<span id="error-title"></span>
+								</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Fullname<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{full_name}" id="full_name" class='form-control' data-parsley-required="true"  name="full_name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="email" value="{email}" id="email" class='form-control' data-parsley-required="true"  name="email"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Phone number<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{phone}" id="phone" class='form-control' data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$" data-parsley-required="true"  name="phone"></div>
+							</div>
+							
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Country <i class='req'>*</i></label>
+								<div class="col-md-9"><select class="form-control" id="id_ref_country" name="id_ref_country" data-parsley-required="true">{list_ref_country}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">City<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{city}" id="city" class='form-control' data-parsley-required="true"  name="city"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Company<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{company}" id="company" class='form-control' data-parsley-required="true"  name="company"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Job Title<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{job_title}" id="job_title" class='form-control' data-parsley-required="true"  name="job_title"></div>
+							</div>
+							
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+								<div class="col-md-9"><select class="form-control" id="id_ref_user_category" name="id_ref_user_category" data-parsley-required="true">{list_ref_user_category}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Exhibitor</label>
+								<div class="col-md-9"><select name="exhibitor_id" id="exhibitor_id" class='form-control' title="exhibitor_id">{list_exhibitor}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Password</label>
+								<div class="col-md-9">
+									<span id='cpwd' class='invis'><input type='checkbox' id='chpwd' onclick='change_pwd(this.checked);'> Change Password<br></span>
+									<input type="password" class="frm validate[required] form-control" name="userpass" id="userpass">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -9,9 +9,10 @@ class Page_hit_model extends  CI_Model{
     }
 
 	function records($where=array(),$isTotal=0){
-		$alias['search_name'] = 'a.name';
+		$alias['search_email'] = 'b.email';
 		query_grid($alias,$isTotal);
-		$this->db->select("a.*");
+		$this->db->select("a.*, b.email");
+		$this->db->join('auth_user b','b.id_auth_user = a.user_create_id');
 		$query = $this->db->get_where($this->tableAs,$where);
 		if($isTotal==0){
 			$data = $query->result_array();
@@ -24,7 +25,7 @@ class Page_hit_model extends  CI_Model{
 
 	function insert($data){
 		$data['create_date'] 	= date('Y-m-d H:i:s');
-		$data['user_create_id'] = id_user();
+		$data['user_create_id'] = ($data['user_create_id']) ? $data['user_create_id'] : id_user();
 		$this->db->insert($this->table,array_filter($data));
 	}
 

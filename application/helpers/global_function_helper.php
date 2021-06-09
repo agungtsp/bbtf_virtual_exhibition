@@ -906,18 +906,22 @@ function paging_grid_api($total_row, $total_filter)
 	$paging .= '</ul>';
 	return $paging;
 }
-function ddi_grid($data,$ttl_row,$uri_segment=4){
+function ddi_grid($data,$ttl_row,$uri_segment=4,$extra_param=''){
 	$CI 					= & get_instance();
 	$pagination = (int)$CI->uri->segment(4) ? $CI->uri->segment(4) : 0;
+	if ($uri_segment==5) {
+		$pagination = (int)$CI->uri->segment(4) ? $CI->uri->segment(5) : 0;
+	}
 	$data['data'] = set_nomor_urut($data,$pagination);
-	$data['paging'] = paging_grid($ttl_row,$uri_segment);
+	$data['paging'] = paging_grid($ttl_row,$uri_segment,'',$extra_param);
 	return $data;
 }
-function paging_grid($total_row,$uri_segment=4,$style=0){
+function paging_grid($total_row,$uri_segment=4,$style=0,$extra_param=''){
 	$CI 	= & get_instance();
 	$param 	= $_GET;
 	$CI->load->library('pagination');
-	$config['base_url'] 		= current_controller('function');
+	// $config['base_url'] 		= current_controller('function');
+	$config['base_url'] 		= current_controller('function').'/'.$extra_param.'/';
 	$config['total_rows'] 		= $total_row;
 	$config['uri_segment'] 		= $uri_segment;
 	$config['anchor_class'] 	= 'class="tangan"';

@@ -42,7 +42,7 @@ class Meeting_schedule extends CI_Controller {
 			}
 		}
 		$date = date('Y-m-d H');
-		if ($date < "2021-06-10 13") {
+		if ($date < "2021-06-10 07") {
 			$data['hide1'] = 'hidden';
 		} else {
 			$data['hide2'] = 'hidden';
