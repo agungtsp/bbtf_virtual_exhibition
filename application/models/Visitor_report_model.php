@@ -42,6 +42,7 @@ class Visitor_report_model extends  CI_Model{
 		} else {
 			return $query->num_rows();
 		}
+		
 		$ttl_row = $this->records_view($where,1);
 		return ddi_grid($data,$ttl_row,5,$id);
 	}

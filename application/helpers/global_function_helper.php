@@ -255,6 +255,22 @@ function export_to($fname, $html){
 
 	fclose($fp);
 }
+
+function export_to_2($fname){
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    // header('Content-Disposition: attachment; filename=file.csv'));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    // echo "\xEF\xBB\xBF"; // UTF-8 BOM
+    echo $csv_file_content;
+    $fname = str_replace(' ','_',$fname);
+    header ("Content-Disposition: attachment; filename=$fname");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+}
 /**
  * Add nomor urut
  * @author Siti Hasuna <sh.hanaaa@gmail.com>

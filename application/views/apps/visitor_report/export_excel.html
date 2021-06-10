@@ -1,0 +1,121 @@
+<style type="text/css">
+    .text-center{
+        text-align: center;
+    }
+    table {
+    	padding: 3px;
+    	font-family: arial;
+    	font-size: 13px;
+    }
+    .bungkus_kotak .location{
+        background-color: #b60608;
+        color: #ffffff;
+        padding: 5px;    
+    }
+    .location {
+        float: right;
+    }
+    .location p {
+        font-size: 12px;
+    }
+    .location strong {
+        font-size: 18px;
+    }
+    .span6 .logo {
+        float: left;
+    } 
+    
+    .garis {
+        margin: 20px 0;
+        border: 0;
+        border-top: 3px solid #505050;
+        border-bottom: 7px solid #fff;
+    }   
+    .isi{
+        /*border: solid 1px black; */
+    } 
+    .header-table {
+        padding: 10px;
+        background-color: #F1F1F1; 
+    }
+    .baris-pertama {
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        /*border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+    }
+    .baris-tengah {
+        border-right: 1px solid grey;
+        /*border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+    }
+    .header{
+        padding: 5px;
+    }
+    .baris-atas{
+        border-top: 1px solid grey;
+    }
+    .span6 {
+       width: 48.61878453038674%;  
+        width: 400px;
+        background-color: grey;
+      } 
+      .text-right{
+      	text-align: right;
+      }
+    </style> 
+<section class=''>
+	<div><?=$message?></div>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class='span12 main-title'><h3><?=$lang_salesH ?></h3> <!--<a class='tangan feather feather-search toggle_filter' title='Search'></a>--></div>
+		</div>
+	</div>		   
+	<table>
+		<tr>
+			<td>{exhibitor_name}</td>
+		</tr>
+		<tr>
+			<td>PIC</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>:</td>
+			<td>{seller_name}</td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td>:</td>
+			<td>{seller_email}</td>
+		</tr>
+	</table>
+	<br/>
+	<div id='grid1'  class="body-table">
+		<table width="100%" cellpadding="6" border="1">
+			<thead>
+            <tr>
+                <th class="no" style="width: 50px;">No</th>
+                <th class="center">Nama<span></span></th>
+                <th class="center">Company<span></span></th>
+                <th class="center">Country<span></span></th>
+                <th class="center">City<span></span></th>
+                <th class="center">Email<span></span></th>
+                <th class="center">Telp<span></span></th>
+            </tr>
+        </thead>
+		<tbody>
+			{data}
+				<tr>
+					<td class="center">{nomor}</td>
+					<td>{full_name}</td>
+					<td>{company}</td>
+					<td>{country}</td>
+					<td>{city}</td>
+					<td>{email}</td>
+					<td>{phone}</td>
+				</tr>
+			{/data}
+		</tbody>
+</table>
+</div>
+</section> 
