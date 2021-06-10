@@ -72,7 +72,7 @@ class Meeting_model extends  CI_Model{
 		if($is_single_row==1){
 			return 	$this->db->get_where($this->tableAs,$where)->row_array();
 		} else {
-			return 	$this->db->get_where($this->tableAs,$where)->result_array();
+			return 	$this->db->order_by('start_time','asc')->get_where($this->tableAs,$where)->result_array();
 		}
 	} 
 
